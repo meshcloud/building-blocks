@@ -16,3 +16,12 @@ Building blocks is becomming the new universal primitive for assembling landing 
   - platform engineers can implement custom blocks using on an external block-runner API
 - are aware of their desired and actual state in a tenant
 
+## Advantages of Building Blocks
+- Application teams have easy self-service access to best practice building blocks as part of transparent landing zones or via the marketplace 
+- Enable you to serve compliant cloud infrastructure to application teams for a variety of use cases by mix and matching building blocks
+- Continuously grow maturity of your Landing Zones
+- Native terraform support - you deliver the configuration we take care of the rest!
+- Providing a low effort alternative to Service Brokers with no yml files required
+- No tenant bindings anymore!
+
+<img width="1060" alt="image" src="https://github.com/meshcloud/Building-Blocks/assets/96071919/547fae73-4e05-4712-8e0f-3d62f44f7c55">
