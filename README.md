@@ -25,3 +25,17 @@ Building blocks is becomming the new universal primitive for assembling landing 
 - No tenant bindings anymore!
 
 <img width="1060" alt="image" src="https://github.com/meshcloud/Building-Blocks/assets/96071919/547fae73-4e05-4712-8e0f-3d62f44f7c55">
+
+## Terraform versions
+
+## Usage
+
+## Permissions
+
+## Requirements
+
+## Required Inputs
+
+## License
+
+## Contributing
