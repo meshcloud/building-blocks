@@ -17,10 +17,15 @@ jobs:
     - uses: hashicorp/setup-terraform@v1
       with:
         terraform_version: ^1.1
-        path: ./azure/modules/terraform/compute
 
     - run: terraform init
+      with:
+        path: azure/modules/terraform/compute
 
     - run: terraform validate
+      with:
+        path: azure/modules/terraform/compute
 
     - run: terraform fmt -recursive -check
+      with:
+        path: azure/modules/terraform/compute
