@@ -20,12 +20,19 @@ jobs:
 
     - name: init
       run: terraform init
-      working-directory: azure/modules/terraform/compute
+      working-directory: 
+        azure/modules/terraform/compute
+        azure/modules/terraform/networking
+
 
     - name: validate
       run: terraform validate
-      working-directory: azure/modules/terraform/compute
+      working-directory: 
+        azure/modules/terraform/compute
+        azure/modules/terraform/networking
 
     - name: fmt
       run: terraform fmt -recursive -check
-      working-directory: azure/modules/terraform/compute
+      working-directory:  
+        azure/modules/terraform/compute
+        azure/modules/terraform/networking
