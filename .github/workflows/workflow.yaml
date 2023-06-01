@@ -1,30 +1,25 @@
-name: Terraform Tests
+name: Terraform CI
 
 on:
   push:
-    branches:
-      - main
+  merge_group:
+    types: [checks_requested]
+
 
 jobs:
-  test:
+  validate:
+    name: Validate
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
+    - name: Check out code
       uses: actions/checkout@v2
 
-    - name: Set up Terraform
-      uses: hashicorp/setup-terraform@v1
+    - uses: hashicorp/setup-terraform@v1
       with:
         terraform_version: ^1.1
 
-    - name: Run Terraform Tests
-      run: |
-        {{#folders}}
-        - name: "Run Terraform Tests - {{folder}}"
-          run: |
-            cd {{folder}}
-            terraform init
-            terraform validate
-            terraform fmt -check
-        {{/folders}}
+    - run: terraform init
+
+    - run: terraform validate
+
+    - run: terraform fmt -recursive -check
