@@ -11,15 +11,23 @@ jobs:
     name: Validate
     runs-on: ubuntu-latest
     steps:
-    - name: Check out code
-      uses: actions/checkout@v2
+      - name: Check out code
+        uses: actions/checkout@v2
 
-    - uses: hashicorp/setup-terraform@v1
-      with:
-        terraform_version: ^1.1
+      - uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: ^1.1
 
-    - run: terraform init
+      - name: Run Terraform Tests - Folder 1
+        working-directory: azure/modules/terraform
+        run: |
+          terraform init
+          terraform validate
+          terraform fmt -recursive -check
 
-    - run: terraform validate
-
-    - run: terraform fmt -recursive -check
+      - name: Run Terraform Tests - Folder 2
+        working-directory: gcp/modules/terraform
+        run: |
+          terraform init
+          terraform validate
+          terraform fmt -recursive -check
