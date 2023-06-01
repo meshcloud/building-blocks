@@ -9,6 +9,12 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        folder:
+          - azure/modules/terraform/compute
+          - azure/modules/terraform/networking
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -18,17 +24,9 @@ jobs:
       with:
         terraform_version: ^1.1
 
-    - name: Find Terraform Folders
-      id: find_folders
-      run: |
-        echo "::set-output name=folders::$(find azure/modules/terraform -type d -name '*.tf' -exec dirname {} \; | sort -u)"
-
     - name: Run Terraform Tests
       run: |
-        for folder in ${{ steps.find_folders.outputs.folders }}; do
-          cd "$folder"
-          terraform init
-          terraform validate
-          terraform fmt -check
-          cd -
-        done
+        cd ${{ matrix.folder }}
+        terraform init
+        terraform validate
+        terraform fmt -check
