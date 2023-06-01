@@ -23,7 +23,7 @@ Building blocks is becomming the new universal primitive for assembling landing 
 - Native terraform support - you deliver the configuration we take care of the rest!
 - Providing a low effort alternative to Service Brokers with no yml files required
 - No tenant bindings anymore!
-<img width="1060" alt="image" src="https://github.com/meshcloud/Building-Blocks/assets/96071919/547fae73-4e05-4712-8e0f-3d62f44f7c55">
+<img width="1061" alt="image" src="https://github.com/meshcloud/Building-Blocks/assets/96071919/61c08b6e-4c07-4c8f-85d0-0791508a7951">
 
 ## Terraform versions
 
