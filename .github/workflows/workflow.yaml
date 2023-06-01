@@ -18,14 +18,17 @@ jobs:
       with:
         terraform_version: ^1.1
 
-    - run: terraform init
+    - name: init
+      run: terraform init
       with:
         path: azure/modules/terraform/compute
 
-    - run: terraform validate
+    - name: validate
+      run: terraform validate
       with:
         path: azure/modules/terraform/compute
 
-    - run: terraform fmt -recursive -check
+    - name: fmt
+      run: terraform fmt -recursive -check
       with:
         path: azure/modules/terraform/compute
