@@ -1,6 +1,6 @@
 locals {
-  resource_group_id_parts = split("/",var.resource_group_id)
-  resource_group_name = element(local.resource_group_id_parts,length(local.resource_group_id_parts)-1)
+  resource_group_id_parts = split("/", var.resource_group_id)
+  resource_group_name     = element(local.resource_group_id_parts, length(local.resource_group_id_parts) - 1)
 }
 
 data "azurerm_subnet" "main" {
