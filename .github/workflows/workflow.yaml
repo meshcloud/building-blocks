@@ -20,10 +20,10 @@ jobs:
 
       - name: Run Terraform Tests
         run: |
-          for folder in azure/modules/terraform/compute azure/modules/terraform/networking; do
+          find . -type d -name "terraform" -execdir sh -c '
+            folder=$(dirname "$1")
             cd "$folder"
             terraform init
             terraform validate
             terraform fmt -check
-            cd -
-          done
+          ' sh {} \;
