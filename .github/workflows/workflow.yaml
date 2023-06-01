@@ -1,4 +1,4 @@
-name: Terraform CI
+name: Terraform Tests
 
 on:
   push:
@@ -8,12 +8,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        folder:
-          - azure/modules/terraform/compute
-          - azure/modules/terraform/networking
 
     steps:
     - name: Checkout code
@@ -26,7 +20,11 @@ jobs:
 
     - name: Run Terraform Tests
       run: |
-        cd ${{ matrix.folder }}
-        terraform init
-        terraform validate
-        terraform fmt -check
+        {{#folders}}
+        - name: "Run Terraform Tests - {{folder}}"
+          run: |
+            cd {{folder}}
+            terraform init
+            terraform validate
+            terraform fmt -check
+        {{/folders}}
