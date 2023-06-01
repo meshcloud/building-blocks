@@ -5,34 +5,25 @@ on:
   merge_group:
     types: [checks_requested]
 
-
 jobs:
-  validate:
-    name: Validate
+  test:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Check out code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - uses: hashicorp/setup-terraform@v1
-      with:
-        terraform_version: ^1.1
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: ^1.1
 
-    - name: init
-      run: terraform init
-      working-directory: 
-        azure/modules/terraform/compute
-        azure/modules/terraform/networking
-
-
-    - name: validate
-      run: terraform validate
-      working-directory: 
-        azure/modules/terraform/compute
-        azure/modules/terraform/networking
-
-    - name: fmt
-      run: terraform fmt -recursive -check
-      working-directory:  
-        azure/modules/terraform/compute
-        azure/modules/terraform/networking
+      - name: Run Terraform Tests
+        run: |
+          for folder in azure/modules/terraform/compute azure/modules/terraform/networking; do
+            cd "$folder"
+            terraform init
+            terraform validate
+            terraform fmt -check
+            cd -
+          done
