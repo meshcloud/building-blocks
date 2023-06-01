@@ -14,7 +14,7 @@ variable "admin_ssh_public_key" {
 }
 
 variable "size" {
-  type = string
+  type    = string
   default = "Standard_A1_v2"
 }
 
