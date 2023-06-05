@@ -31,7 +31,7 @@ Building blocks is becomming the new universal primitive for assembling landing 
 ### Service Principal
 1. Before deploying any module to the cloud environment, it is imperative to have an Azure service principal (or an IAM user in AWS, or a Service account in GCP) with appropriate permissions at the desired scope. It is possible to utilize an existing service principal for this purpose, or you can refer to the provided links below to set up a new service principal within the targeted environment:
 
-- Azure Service principal module
+- [Azure Service principal module](https://github.com/meshcloud/Building-Blocks/wiki/Azure-service-principal-module)
 - AWS IAM User module
 - GCP Service account module
  
