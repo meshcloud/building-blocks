@@ -5,6 +5,6 @@ terraform {
     resource_group_name  = "cloudfoundation-tfstates"
     storage_account_name = "tfstatesbuildingblocks"
     container_name       = "tfstates"
-    key                  = "building-block-vm"
+    key                  = "building-block-spn"
   }
 }
