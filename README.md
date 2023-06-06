@@ -1,6 +1,11 @@
 # Building Blocks - Unlocking Efficiency through Modularization
 Information about how to use or extend these modules can be found in our [Wiki](https://github.com/meshcloud/Building-Blocks/wiki)
 
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=xPGKhe-4X_o
+" target="_blank"><img src="https://github.com/meshcloud/Building-Blocks/assets/96071919/ba749410-14c6-4c7a-96bf-dcf011942e2f" 
+alt="Building Block Youtube" width="640" height="380" border="10" /></a>
+
+
 ## What are Building Blocks exactly?
 Building blocks is becomming the new universal primitive for assembling landing zones and cloud tenants in meshStack. Each building block represents an encapsulated piece of functionality provided to an application team. Explained in a single picture below, application teams can flexibly assemble building blocks on the landing zone’s “base-line” as required to support their use case.
 
