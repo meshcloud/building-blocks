@@ -3,7 +3,7 @@ output "client_id" {
 }
 
 output "client_secret" {
-  value = azuread_service_principal_password.service_principal_pw.value
+  value     = azuread_service_principal_password.service_principal_pw.value
   sensitive = true
 }
 
