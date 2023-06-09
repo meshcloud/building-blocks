@@ -1,31 +1,31 @@
 # Backend Variables -------------------------------
 variable "tfstate_resource_group_name" {
- type= string
- description = "Name of the resource group holding the tfstate file" 
+  type        = string
+  description = "Name of the resource group holding the tfstate file"
 }
 
 variable "tfstate_storage_account_name" {
- type= string
- description = "Name of the storage account holding the tfstate file" 
+  type        = string
+  description = "Name of the storage account holding the tfstate file"
 }
 
 variable "tfstate_storage_container_name" {
- type= string
- description = "Name of the storage container name holding the tfstate file" 
+  type        = string
+  description = "Name of the storage container name holding the tfstate file"
 }
 
 variable "tfstate_tenant_id" {
- type= string
- description = "Id of the tenant holding the tfstate file" 
+  type        = string
+  description = "Id of the tenant holding the tfstate file"
 }
 
 variable "tfstate_subscription_id" {
-  type = string
-  description = "Id of the subsctiption holding the tfstate file"  
+  type        = string
+  description = "Id of the subsctiption holding the tfstate file"
 }
 
 variable "tfstate_key" {
-  type = string
+  type        = string
   description = "value add to the tfstates file name"
 }
 
