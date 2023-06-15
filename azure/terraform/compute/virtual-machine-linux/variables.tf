@@ -1,3 +1,11 @@
+variable "tenant_id" {
+  description = "Identifier of the Lift-and-Shift subscription's AAD tenant."
+}
+
+variable "subscription_id" {
+  description = "Identifier of the Lift-and-Shift subscription."
+}
+
 variable "subnet_name" {
 }
 
