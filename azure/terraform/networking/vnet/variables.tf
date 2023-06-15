@@ -1,6 +1,3 @@
-#
-# Network specific variables
-#
 variable "location" {
   description = "Location of the network"
   type        = string
@@ -13,11 +10,6 @@ variable "vnet_prefix" {
   default     = "cf" 
 }
 
-variable "vnet_size" {
-  description = "Size of the requested vNet"
-  type        = string
-}
-
 variable "address_space_workload" {
   description = "The address space in CIDR notation for your workload subnets. For example 10.1.0.0/25"
   type        = string
@@ -27,18 +19,10 @@ variable "address_space_workload" {
   }
 }
 
-#
-# Azure variables
-#
-
 variable "hub_subscription_id" {
   description = "Subscription ID of the subscription, the network hub is located in."
   type        = string
 }
-
-#
-# meshStack variables
-#
 
 variable "subscription_id" {
   description = "Subscription ID of the subscription the network shall be created in."
