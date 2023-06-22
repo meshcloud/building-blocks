@@ -1,0 +1,65 @@
+{
+  "ResourceName": "",
+  "TemplatesConfig": {
+    "templateGroupId": "/mesh-cloud/github_integration_group:4",
+    "templates": [
+      {
+        "id": 0,
+        "WfType": "TERRAFORM",
+        "ResourceName": "cli_generated_workflow",
+        "Description": "",
+        "EnvironmentVariables": [],
+        "DeploymentPlatformConfig": [
+          {
+            "config": {
+              "integrationId": "/integrations/sg-azure-integration"
+            },
+            "kind": "AZURE_STATIC"
+          }
+        ],
+        "TerraformConfig": {
+          "terraformVersion": "1.3.6",
+          "managedTerraformState": true,
+          "approvalPreApply": false,
+          "driftCheck": false
+        },
+        "VCSConfig": {
+          "iacVCSConfig": {
+            "useMarketplaceTemplate": true,
+            "iacTemplate": "/mesh-cloud/private_repo_integration_template",
+            "iacTemplateId": "/mesh-cloud/private_repo_integration_template:4"
+          },
+          "iacInputData": {
+            "schemaType": "RAW_JSON",
+            "data": {
+              "sg_subscription_id": "",
+              "sg_tenant_id": ""
+            }
+          }
+        },
+        "MiniSteps": {
+          "wfChaining": {
+            "ERRORED": [],
+            "COMPLETED": []
+          },
+          "notifications": {
+            "email": {
+              "ERRORED": [],
+              "COMPLETED": [],
+              "APPROVAL_REQUIRED": [],
+              "CANCELLED": []
+            }
+          }
+        },
+        "Approvers": [],
+        "GitHubComSync": {
+          "pull_request_opened": {
+            "createWfRun": {
+              "enabled": false
+            }
+          }
+        }
+      }
+    ]
+  }
+}
