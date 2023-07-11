@@ -24,10 +24,10 @@ variable "project_id" {
   nullable    = false
 }
 variable "subscription_id" {
-  type = string
+  type        = string
   description = "Azure Subscription ID"
 }
 variable "tenant_id" {
-  type = string
+  type        = string
   description = "Azure Tenant ID"
 }
