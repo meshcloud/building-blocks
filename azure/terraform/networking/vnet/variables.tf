@@ -7,7 +7,7 @@ variable "location" {
 variable "vnet_prefix" {
   description = "Prefix of the created VNET. It will be used as a base name for the created VNET, Resource Group, etc."
   type        = string
-  default     = "cf" 
+  default     = "cf"
 }
 
 variable "address_space_workload" {
