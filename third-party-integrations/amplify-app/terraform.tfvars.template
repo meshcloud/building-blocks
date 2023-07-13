@@ -1,0 +1,8 @@
+app_name                   = "app-name"
+aws_access_key             = ""
+aws_secret_key             = ""
+github_owner               = "org-name"
+github_token               = ""
+github_repo_name           = "repo-name"
+github_repo_url            = "https://github.com/org-name/repo-name"
+github_app_installation_id = "12345678"
