@@ -1,5 +1,9 @@
+resource "random_pet" "suffix" {
+  length = 1
+}
+
 resource "azuredevops_project" "terraform_ado_project" {
-  project_name       = var.project_name
+  name               = "${var.project_name}-${random_pet.suffix.id}"
   description        = var.description
   visibility         = var.visibility
   version_control    = var.version_control
@@ -20,7 +24,7 @@ resource "azuredevops_serviceendpoint_github" "serviceendpoint_github" {
 
   auth_personal {
     # Also can be set with AZDO_GITHUB_SERVICE_CONNECTION_PAT environment variable
-    personal_access_token = "xxxxxxxxxxxxxxxxxxxx"
+    # personal_access_token = "XXXXXXXXXXXXXXXXXXXXXXXX"
   }
 }
 
