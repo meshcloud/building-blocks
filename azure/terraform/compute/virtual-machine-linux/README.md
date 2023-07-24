@@ -17,3 +17,9 @@ Linux virtual machine in azure
     - add the rest of the variables as platform operator or user input
 8. On the next page, add the outputs from outputs.tf file and click on Create Building Block
 9. Now users can add this building block to their tenants
+
+## Virtual machine pricing
+Price of a virtual machine in azure can be divided in two sections:
+1. SKU 
+2. Storage
+Refer to this [Link](https://azure.microsoft.com/en-us/pricing/details/virtual-machines/windows/) to calculate the cost of a virtual machine in Azure.
