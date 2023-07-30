@@ -7,13 +7,13 @@ resource "random_string" "unique" {
 
 # Resource-1 Resource Group
 resource "azurerm_resource_group" "rg_storage_account" {
-  name     = "${var.resource_group_name}${random_string.unique.id}"
+  name     = var.resource_group_name
   location = var.location
 }
 
 # Resource-2 Storage account
 resource "azurerm_storage_account" "storage" {
-  name                      = "${var.storage_account_name}${random_string.unique.id}"
+  name                      = var.storage_account_name
   resource_group_name       = azurerm_resource_group.rg_storage_account.name
   location                  = azurerm_resource_group.rg_storage_account.location
   account_kind              = var.account_kind

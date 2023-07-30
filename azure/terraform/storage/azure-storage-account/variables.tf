@@ -6,6 +6,10 @@ variable "subscription_id" {
 variable "storage_account_name" {
   description = "Name of storage account. Unless var.exact_name is true any illegal characters (,-_ etc) will be truncated and 6 random characters will be appended to this value."
   type        = string
+  validation {
+    condition     = can(regex("^[a-z0-9]{3,24}$", var.storage_account_name))
+    error_message = "The length of the Storage account name should be between 3-24 characters and contains only lower-case letters and numbers"
+  }
 }
 
 variable "resource_group_name" {
