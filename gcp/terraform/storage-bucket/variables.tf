@@ -9,3 +9,8 @@ variable "bucket_name" {
   description = "bucket name"
   default     = "buildingblockbucket"
 }
+
+variable "project_id" {
+  type        = string
+  description = "Google Project ID"
+}
