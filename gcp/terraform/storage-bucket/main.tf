@@ -2,12 +2,10 @@
 # Life cycle settings for storage bucket objects
 # and enabling public access prevention
 resource "google_storage_bucket" "buildingblock-bucket" {
-  name          = var.bucket_name
-  location      = var.location
-  force_destroy = true
-
+  name                        = var.bucket_name
+  location                    = var.location
+  force_destroy               = true
   uniform_bucket_level_access = true
-
   lifecycle_rule {
     condition {
       age = 1
@@ -16,7 +14,6 @@ resource "google_storage_bucket" "buildingblock-bucket" {
       type = "AbortIncompleteMultipartUpload"
     }
   }
-
   public_access_prevention = "enforced"
 }
 
