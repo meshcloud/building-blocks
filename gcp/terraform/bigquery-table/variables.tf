@@ -25,3 +25,8 @@ variable "tables" {
     labels   = map(string),
   }))
 }
+
+variable "project_id" {
+  type        = string
+  description = "Google Project ID"
+}

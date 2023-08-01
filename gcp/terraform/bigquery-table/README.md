@@ -10,11 +10,11 @@
 5. Select "Terraform" in Implementation Type and put in the Terraform version
 6. Copy the repository HTTPS address to the "Git Repository URL" field (if its a private repo, add your SSH key) click next
 7. For the inputs do the following
-    - add Environmental Variable:
-        - SA_ID=bq-deployer
-        - PROJECT_ID=your-project-id
-        - SA_EMAIL=$SA_ID@$PROJECT_ID.iam.gserviceaccount.com
-    - add the add the other variables in variables.tf as you desired
+    - add variables based on your backend configuration (e.g. client_id and client_secret for azure, SA_ID and SA_EMAIL for GCS)
+    - add other Variables:
+        - project_id=your-project-id as regular variable (For the correct value, you can use "Platform Tenant Id" source in inputs)
+        - key.json as static file input (name of the input variable should be the same as service account credential file in provider block)
+    - add the other variables in variables.tf as you desired
 8. On the next page, add the outputs from outputs.tf file and click on Create Building Block
 9. Now users can add this building block to their tenants
 
