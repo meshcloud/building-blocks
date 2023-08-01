@@ -17,6 +17,7 @@ This building block creates a bigquery table in GCP
         - project_id as regular variable (You can choose "Platform Tenant Id as source)
         - key.json (Service account credential file) as static file input (name of the input variable should be the same as service account credential file in provider block)
     - add rest of the variables in variables.tf as you desired
+    - you can add variables with values of type "map" in a "terraform.tfvars" file and feed it as mentioned before. (Scroll down for an example)
 8. On the next page, add the outputs from outputs.tf file and click on Create Building Block
 9. Now users can add this building block to their tenants   
 
@@ -71,4 +72,33 @@ terraform {
     prefix  = "<Prefix of the state file name>"
   }
 }
+```
+
+## terraform.tfvars
+```
+#Update with the project you are deploying module to
+project_id = "example-project"
+
+#Configures time-based partitioning for this table
+time_partitioning = "DAY"
+
+#The labels for dataset being deployed
+dataset_labels = {
+  env      = "dev"
+  billable = "true"
+  owner    = "johndoe"
+}
+
+#A list of maps that includes both table_id and schema in each element, the table(s) will be created on the single dataset
+tables = [
+  {
+    table_id = "test",
+    schema   = "sample_bq_schema.json",
+    labels = {
+      env      = "dev"
+      billable = "true"
+      owner    = "joedoe"
+    },
+  },
+]
 ```
