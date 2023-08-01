@@ -21,32 +21,6 @@ This building block creates a bigquery table in GCP
 8. On the next page, add the outputs from outputs.tf file and click on Create Building Block
 9. Now users can add this building block to their tenants   
 
-### Notes:
-1. You have to enable bigquery either via GCP Console or with using the following command:
-    gcloud services enable bigquery-json.googleapis.com \ 
-    --project $PROJECT_ID
-
-
-2. Assign required permission to the SA:
-    gcloud iam service-accounts create $SA_ID \
-    --display-name $SA_ID \
-    --project $PROJECT_ID
-
-    gcloud projects add-iam-policy-binding $PROJECT_ID \
-    --member serviceAccount:$SA_EMAIL \
-    --role roles/bigquery.dataOwner \
-    --user-output-enabled false
-
-    gcloud iam service-accounts keys create $HOME/.ssh/bq-key.json \
-    --iam-account $SA_EMAIL \ 
-    --project $PROJECT_ID
-
-## Bigquery Pricing
-The cost of using bigquery is divided within two sections:
-1. Compute pricing
-2. Storage pricing
-To understand how cost will be calculated in GCP, refer to this [Link](https://cloud.google.com/bigquery/pricing).
-
 ## Backend configuration
 Here you can find an example of how to create a backend.tf file
 ### Azure storage account:
@@ -74,31 +48,29 @@ terraform {
 }
 ```
 
-## terraform.tfvars
-```
-#Update with the project you are deploying module to
-project_id = "example-project"
+### Notes:
+1. You have to enable bigquery either via GCP Console or with using the following command:
+    gcloud services enable bigquery-json.googleapis.com \ 
+    --project $PROJECT_ID
 
-#Configures time-based partitioning for this table
-time_partitioning = "DAY"
 
-#The labels for dataset being deployed
-dataset_labels = {
-  env      = "dev"
-  billable = "true"
-  owner    = "johndoe"
-}
+2. Assign required permission to the SA:
+    gcloud iam service-accounts create $SA_ID \
+    --display-name $SA_ID \
+    --project $PROJECT_ID
 
-#A list of maps that includes both table_id and schema in each element, the table(s) will be created on the single dataset
-tables = [
-  {
-    table_id = "test",
-    schema   = "sample_bq_schema.json",
-    labels = {
-      env      = "dev"
-      billable = "true"
-      owner    = "joedoe"
-    },
-  },
-]
-```
+    gcloud projects add-iam-policy-binding $PROJECT_ID \
+    --member serviceAccount:$SA_EMAIL \
+    --role roles/bigquery.dataOwner \
+    --user-output-enabled false
+
+    gcloud iam service-accounts keys create $HOME/.ssh/bq-key.json \
+    --iam-account $SA_EMAIL \ 
+    --project $PROJECT_ID
+
+## Bigquery Pricing
+The cost of using bigquery is divided within two sections:
+1. Compute pricing
+2. Storage pricing
+To understand how cost will be calculated in GCP, refer to this [Link](https://cloud.google.com/bigquery/pricing).
+

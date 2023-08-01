@@ -1,13 +1,38 @@
-module "bigquery" {
-  source            = "terraform-google-modules/bigquery/google" # Path to the module
-  version           = "~> 2.0.0"                                 # Specify the version of the module you require
-  dataset_id        = "test"
-  dataset_name      = "test"
-  description       = "some description" # updated the description accordingly
-  expiration        = var.expiration
-  project_id        = var.project_id
-  location          = "europe-west3" # Update location if needed
-  tables            = var.tables
-  time_partitioning = var.time_partitioning
-  dataset_labels    = var.dataset_labels
+resource "google_bigquery_dataset" "default" {
+  dataset_id                  = var.dataset_id
+  friendly_name               = var.dataset_friendly_name
+  description                 = "This is a test description"
+  location                    = var.dataset_location
+  default_table_expiration_ms = 3600000
+
+  labels = var.dataset_labels
+}
+
+resource "google_bigquery_table" "default" {
+  dataset_id          = google_bigquery_dataset.default.dataset_id
+  table_id            = var.table_id
+  deletion_protection = false
+  time_partitioning {
+    type = "DAY"
+  }
+
+  labels = var.table_labels
+
+  schema = <<EOF
+[
+  {
+    "name": "permalink",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The Permalink"
+  },
+  {
+    "name": "state",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "State where the head office is located"
+  }
+]
+EOF
+
 }
