@@ -1,5 +1,5 @@
 # GCP storage bucket
-    This building block Creates a new bucket in Google cloud storage service (GCS)
+This building block Creates a new bucket in Google cloud storage service (GCS)
 
 ## How to use this Building Block in meshStack 
 
