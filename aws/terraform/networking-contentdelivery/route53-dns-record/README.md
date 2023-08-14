@@ -4,7 +4,6 @@
 
 *AWS Route53 DNS Records*: the actual building block code to be sourced from meshStack.
 
-# Building Block For AWS Route53 DNS Records
 
 Building Block module ready for meshStack.
 Needs to be run with a service account with the following permissions:
