@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "btp" {
-  globalaccount = "XXXXXX" # Should look like: "98d249c7trial-ga"
+  # globalaccount = "xxxxxxxxxx" # Set via environment variables. Should look like: "98d249c7trial-ga"
   # username: use BTP_USERNAME environment variable
   # password: use BTP_PASSWORD environment variable
 }
