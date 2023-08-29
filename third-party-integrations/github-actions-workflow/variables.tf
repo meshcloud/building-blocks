@@ -1,6 +1,6 @@
-variable "repository_url" {
+variable "repository_name" {
   type        = string
-  description = "The url to the target repository"
+  description = "The name to the target repository"
 }
 
 variable "branch" {
