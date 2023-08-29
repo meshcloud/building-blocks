@@ -1,5 +1,5 @@
 resource "github_repository_file" "workflow" {
-  repository          = var.repository_url               # Replace with the target repository
+  repository          = var.repository_name               # Replace with the target repository
   file                = ".github/workflows/workflow.yml" # The desired file path within the repository
   content             = file("./workflow.yml")          # Content of the file
   overwrite_on_create = true
