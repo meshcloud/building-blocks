@@ -22,7 +22,7 @@ resource "btp_subaccount" "my_project" {
 
 resource "btp_subaccount_environment_instance" "cloudfoundry" {
   subaccount_id    = btp_subaccount.my_project.id
-  name             = "my-cf-environment"
+  name             = var.environmentinstance_name
   environment_type = "cloudfoundry"
   service_name     = "cloudfoundry"
   plan_name        = "standard"
@@ -31,6 +31,6 @@ resource "btp_subaccount_environment_instance" "cloudfoundry" {
   # the instance shall be created. 
   # available environments can be looked up using the btp_subaccount_environments datasource
   parameters = jsonencode({
-    instance_name = "my-cf-org-name"
+    instance_name = "${var.instance_name}"
   })
 }

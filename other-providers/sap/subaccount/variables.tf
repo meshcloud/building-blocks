@@ -22,3 +22,11 @@ variable "subaccount_region" {
   type        = string
   description = "The region in which the subaccount was created."
 }
+
+variable "environmentinstance_name" {
+  type = string
+}
+
+variable "instance_name" {
+  type = string
+}
