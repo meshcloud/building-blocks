@@ -19,3 +19,18 @@ resource "btp_subaccount" "my_project" {
   # values can be: "UNSET", "NOT_USED_FOR_PRODUCTION", "USED_FOR_PRODUCTION"
   usage = "UNSET"
 }
+
+resource "btp_subaccount_environment_instance" "cloudfoundry" {
+  subaccount_id    = btp_subaccount.my_project.id
+  name             = "my-cf-environment"
+  environment_type = "cloudfoundry"
+  service_name     = "cloudfoundry"
+  plan_name        = "standard"
+
+  # some regions offer multiple environments of a kind and you must explicitly select the target environment in which
+  # the instance shall be created. 
+  # available environments can be looked up using the btp_subaccount_environments datasource
+  parameters = jsonencode({
+    instance_name = "my-cf-org-name"
+  })
+}
