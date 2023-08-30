@@ -22,10 +22,10 @@ resource "btp_subaccount" "my_project" {
 
 resource "btp_subaccount_environment_instance" "cloudfoundry" {
   subaccount_id    = btp_subaccount.my_project.id
-  name             = var.environmentinstance_name
-  environment_type = "cloudfoundry"
-  service_name     = "cloudfoundry"
-  plan_name        = "standard"
+  name             = var.environment_instance_name
+  environment_type = var.environment_type
+  service_name     = var.service_name
+  plan_name        = var.plan_name
 
   # some regions offer multiple environments of a kind and you must explicitly select the target environment in which
   # the instance shall be created. 
