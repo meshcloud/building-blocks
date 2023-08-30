@@ -26,3 +26,9 @@ variable "commit_email" {
   description = "Committer email address to use"
   default     = "terraform@example.com"
 }
+
+variable "filename" {
+  type = string
+  description = "Name of the yaml file you want to create in workflows folder"
+  default = "workflow.yml"
+}
