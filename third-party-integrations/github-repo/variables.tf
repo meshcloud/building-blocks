@@ -23,3 +23,11 @@ variable "visibility" {
   type    = string
   default = "private"
 }
+
+variable "template_owner" {
+  type = string
+}
+
+variable "template_repo" {
+  type = string
+}
