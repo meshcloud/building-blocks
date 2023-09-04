@@ -2,15 +2,15 @@
 data "btp_regions" "all" {}
 
 resource "random_string" "random_string" {
-  length = 4
-  lower = true
+  length  = 4
+  lower   = true
   special = false
 }
 # create a subaccount in a region
 resource "btp_subaccount" "my_project" {
 
-  name      = "SA-${var.subaccount_subdomain}-${random_string.random_string.id}"
-  subdomain = "SD-${var.subaccount_subdomain}-${random_string.random_string.id}"
+  name      = "sa-${var.workspace_name}-${var.project_name}"
+  subdomain = "sd-${var.workspace_name}-${var.project_name}"
   region    = var.subaccount_region # Default us10
 
   # The ID of the subaccount’s parent entity.
@@ -24,7 +24,7 @@ resource "btp_subaccount" "my_project" {
 
 resource "btp_subaccount_environment_instance" "cloudfoundry" {
   subaccount_id    = btp_subaccount.my_project.id
-  name             = "${var.instance_name}-env"
+  name             = "${var.workspace_name}-${var.project_name}-env"
   environment_type = "cloudfoundry"
   service_name     = var.service_name
   plan_name        = var.plan_name
@@ -33,6 +33,6 @@ resource "btp_subaccount_environment_instance" "cloudfoundry" {
   # the instance shall be created. 
   # available environments can be looked up using the btp_subaccount_environments datasource
   parameters = jsonencode({
-    instance_name = "${var.instance_name}-${random_string.random_string.id}-org"
+    instance_name = "${var.workspace_name}-${var.project_name}-org"
   })
 }

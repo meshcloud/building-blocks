@@ -8,16 +8,22 @@ variable "parent_id" {
   description = "ID of the account where this subaccount is going to created in, use global if there is no parent account"
   default     = ""
 }
+variable "workspace_name" {
+  type = string
+}
 
+variable "project_name" {
+  type = string
+}
 # variable "subaccount_name" {
 #   type        = string
 #   description = " A descriptive name of the subaccount for customer-facing UIs."
 # }
 
-variable "subaccount_subdomain" {
-  type        = string
-  description = "The subdomain that becomes part of the path used to access the authorization tenant of the subaccount. Must be unique within the defined region and cannot be changed after the subaccount has been created."
-}
+# variable "subaccount_subdomain" {
+#   type        = string
+#   description = "The subdomain that becomes part of the path used to access the authorization tenant of the subaccount. Must be unique within the defined region and cannot be changed after the subaccount has been created."
+# }
 
 variable "subaccount_region" {
   type        = string
@@ -30,10 +36,10 @@ variable "subaccount_region" {
 #   description = "The name of the environment instance"
 # }
 
-variable "instance_name" {
-  type        = string
-  description = "Part of Parameters which is The configuration for the environment instance. Should be unique"
-}
+# variable "instance_name" {
+#   type        = string
+#   description = "Part of Parameters which is The configuration for the environment instance. Should be unique"
+# }
 
 variable "environment_type" {
   type        = string
