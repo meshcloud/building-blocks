@@ -9,10 +9,10 @@ variable "parent_id" {
   default     = ""
 }
 
-variable "subaccount_name" {
-  type        = string
-  description = " A descriptive name of the subaccount for customer-facing UIs."
-}
+# variable "subaccount_name" {
+#   type        = string
+#   description = " A descriptive name of the subaccount for customer-facing UIs."
+# }
 
 variable "subaccount_subdomain" {
   type        = string
@@ -25,10 +25,10 @@ variable "subaccount_region" {
   default     = "us10"
 }
 
-variable "environment_instance_name" {
-  type        = string
-  description = "The name of the environment instance"
-}
+# variable "environment_instance_name" {
+#   type        = string
+#   description = "The name of the environment instance"
+# }
 
 variable "instance_name" {
   type        = string

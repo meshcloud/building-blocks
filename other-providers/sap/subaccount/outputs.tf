@@ -14,6 +14,9 @@ output "btp_subaccount_parent_id" {
   value = btp_subaccount.my_project.parent_id
 }
 
+output "btp_subaccount_environment_instance_name" {
+  value = btp_subaccount_environment_instance.cloudfoundry.name
+}
 output "btp_subaccount_environment_instance_broker_id" {
   value = btp_subaccount_environment_instance.cloudfoundry.broker_id
 }
