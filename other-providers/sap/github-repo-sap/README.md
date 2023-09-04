@@ -1,9 +1,10 @@
 # github-repo-building-block
 
-Module that creates a github.com repository. This repository can be based on a template repo.
-It can be used as a Building Block inside of meshStack.
+Module that creates a GitHub repository for the purpose of deploying to SAP-BTP environment. This repository can be based on a GitHub template repository.
 
-* If you want to have a github action enabled repository, It is mandatory that create this github repo based on a template repository which already has the "./github/workflows/" path.
+* If you want to have a github action enabled repository, It is mandatory to create this github repo based on a template repository which already has the "./github/workflows/" path.
+There is a conditional expression to include the "template" block only when the "use_template" variable is true
+
 
 https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository
 
@@ -19,13 +20,13 @@ https://registry.terraform.io/providers/integrations/github/latest/docs/resource
     - Backend configuration:
         - Select "File" as input type and upload the backend.tf file.
         - Add related environment variables based on your backend configuration (e.g. client_id and client_secret for azure, SA_ID and SA_EMAIL for GCS)
-    - add other Variables:
-        - github_token and github_owner variable is the required credentials for the github provider
-    - add rest of the variables in variables.tf as you desired
+    - Provider's Variables:
+        - Add github_owner variable 
+        - Add GITHUB_TOKEN Environment variable
+    - Add rest of the variables from variables.tf as you desired
 8. On the next page, add the outputs from outputs.tf file and click on Create Building Block
 9. Now users can add this building block to their tenants
 ### Env vars needed for provider
-
 https://registry.terraform.io/providers/integrations/github/latest/docs
 
 ## Backend configuration

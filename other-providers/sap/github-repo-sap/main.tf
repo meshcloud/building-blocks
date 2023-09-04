@@ -22,7 +22,7 @@ resource "github_repository" "repository" {
 }
 
 resource "github_repository_file" "workflow" {
-  count               = var.create_new ? 1 : 0
+  count               = var.create_workflow ? 1 : 0
   repository          = github_repository.repository.name   # Replace with the target repository
   file                = ".github/workflows/${var.filename}" # The desired file path within the repository
   content             = file("./${var.filename}")           # Content of the file

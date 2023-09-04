@@ -1,16 +1,14 @@
-variable "github_token" {
-  type = string
-}
-
 variable "github_owner" {
   type = string
+  description = "This is the target GitHub organization or individual user account to manage"
 }
 
 variable "repo_name" {
   type = string
+  description = "The name of the repository."
 }
 
-variable "create_new" {
+variable "create_workflow" {
   type = bool
 }
 
@@ -26,16 +24,18 @@ variable "visibility" {
 
 variable "template_owner" {
   type = string
+  description = "The GitHub organization or user the template repository is owned by"
 }
 
 variable "template_repo" {
   type = string
+  description = "The name of the template repository"
 }
 
 variable "branch" {
-  type = string
+  type        = string
   description = "branch name"
-  default = "main"
+  default     = "main"
 }
 
 variable "commit_message" {
@@ -57,12 +57,12 @@ variable "commit_email" {
 }
 
 variable "filename" {
-  type = string
+  type        = string
   description = "Name of the yaml file you want to create in workflows folder"
-  default = "workflow.yml"
+  default     = "workflow.yml"
 }
 
 variable "use_template" {
-  type = bool
+  type        = bool
   description = "If true, Create the repository based on a GitHub Repo Template."
 }
