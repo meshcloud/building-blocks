@@ -10,7 +10,7 @@ resource "random_string" "random_string" {
 resource "btp_subaccount" "my_project" {
 
   name      = "SA-${var.subaccount_subdomain}-${random_string.random_string.id}"
-  subdomain = var.subaccount_subdomain
+  subdomain = "SD-${var.subaccount_subdomain}-${random_string.random_string.id}"
   region    = var.subaccount_region # Default us10
 
   # The ID of the subaccount’s parent entity.
