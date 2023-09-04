@@ -13,9 +13,9 @@ This building block Creates a subaccount in SAP BTP which can have an environmen
     - Backend configuration:
         - Select "File" as input type and upload the backend.tf file.
         - Add related environment variables based on your backend configuration (e.g. client_id and client_secret for azure, SA_ID and SA_EMAIL for GCS)
-    - add other Variables:
+    - SAP Account Variables:
         - BTP_USERNAME and BTP_PASSWORD as Environment variable
-    - add rest of the variables in variables.tf as you desired
+    - Add rest of the variables in variables.tf as you desired
 8. On the next page, add the outputs from outputs.tf file and click on Create Building Block
 9. Now users can add this building block to their tenants
 
