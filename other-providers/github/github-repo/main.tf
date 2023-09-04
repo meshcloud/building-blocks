@@ -6,9 +6,4 @@ resource "github_repository" "repository" {
   auto_init            = false
   vulnerability_alerts = true
 
-  template {
-    owner                = var.template_owner
-    repository           = var.template_repo
-    include_all_branches = true
-  }
 }
