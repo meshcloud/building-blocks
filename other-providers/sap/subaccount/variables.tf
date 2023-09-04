@@ -8,11 +8,11 @@ variable "parent_id" {
   description = "ID of the account where this subaccount is going to created in, use global if there is no parent account"
   default     = ""
 }
-variable "workspace_name" {
+variable "workspace" {
   type = string
 }
 
-variable "project_name" {
+variable "project" {
   type = string
 }
 # variable "subaccount_name" {
