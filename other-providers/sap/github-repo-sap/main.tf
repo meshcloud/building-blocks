@@ -47,7 +47,7 @@ resource "github_repository_file" "workflow" {
       steps:
       - uses: NickChecan/sap-btp-action
         with:
-          cf_api: https://api.my-cloud-foundry.com
+          cf_api: https://api.cf.us10-001.hana.ondemand.com
 EOF
 
   overwrite_on_create = true
@@ -66,7 +66,6 @@ resource "github_repository_file" "repo_readme" {
   which is located in **${var.btp_subaccount_region}**.
   Use the following information to access the environment instance: 
     - Environment Instance id: **${var.btp_subaccount_environment_instance_id}**
-    - Environment Instance Dashboard URL: **${var.btp_subaccount_environment_instance_dashboard_url}**
     - Environment Instance State: **${var.btp_subaccount_environment_instance_state}**
   EOF
 }

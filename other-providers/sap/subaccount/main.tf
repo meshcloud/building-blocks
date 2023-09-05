@@ -1,11 +1,6 @@
 # Look up all regions via data source
 data "btp_regions" "all" {}
 
-resource "random_string" "random_string" {
-  length  = 4
-  lower   = true
-  special = false
-}
 # create a subaccount in a region
 resource "btp_subaccount" "my_project" {
 
