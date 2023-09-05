@@ -62,11 +62,11 @@ resource "github_repository_file" "repo_readme" {
   repository = github_repository.repository.name # Replace with the target repository
   file       = "./README.md"
   content    = <<-EOF
-  This repository is created to manages deployments in the SAP-BTP subaccount ${var.btp_subaccount_name}
-  which is located in ${var.btp_subaccount_region}.
+  This repository is created to manages deployments in the SAP-BTP subaccount **${var.btp_subaccount_name}**
+  which is located in **${var.btp_subaccount_region}**.
   Use the following information to access the environment instance: 
-    - Environment Instance id: ${var.btp_subaccount_environment_instance_id}
-    - Environment Instance Dashboard URL: ${var.btp_subaccount_environment_instance_dashboard_url}
-    - Environment Instance State: ${var.btp_subaccount_environment_instance_state}
+    - Environment Instance id: **${var.btp_subaccount_environment_instance_id}**
+    - Environment Instance Dashboard URL: **${var.btp_subaccount_environment_instance_dashboard_url}**
+    - Environment Instance State: **${var.btp_subaccount_environment_instance_state}**
   EOF
 }
