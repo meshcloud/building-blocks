@@ -1,10 +1,10 @@
 variable "github_owner" {
-  type = string
+  type        = string
   description = "This is the target GitHub organization or individual user account to manage"
 }
 
 variable "repo_name" {
-  type = string
+  type        = string
   description = "The name of the repository."
 }
 
@@ -23,12 +23,12 @@ variable "visibility" {
 }
 
 variable "template_owner" {
-  type = string
+  type        = string
   description = "The GitHub organization or user the template repository is owned by"
 }
 
 variable "template_repo" {
-  type = string
+  type        = string
   description = "The name of the template repository"
 }
 
@@ -65,4 +65,34 @@ variable "filename" {
 variable "use_template" {
   type        = bool
   description = "If true, Create the repository based on a GitHub Repo Template."
+}
+
+variable "btp_subaccount_name" {
+  type        = string
+  default     = ""
+  description = "Should be derived from the SAP-BTP subaccount Building block"
+}
+
+variable "btp_subaccount_region" {
+  type        = string
+  default     = ""
+  description = "Should be derived from the SAP-BTP subaccount Building block"
+}
+
+variable "btp_subaccount_environment_instance_id" {
+  type        = string
+  default     = ""
+  description = "Should be derived from the SAP-BTP subaccount Building block"
+}
+
+variable "btp_subaccount_environment_instance_dashboard_url" {
+  type        = string
+  default     = ""
+  description = "Should be derived from the SAP-BTP subaccount Building block"
+}
+
+variable "btp_subaccount_environment_instance_state" {
+  type        = string
+  default     = ""
+  description = "Should be derived from the SAP-BTP subaccount Building block"
 }
