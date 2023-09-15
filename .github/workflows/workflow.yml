@@ -38,3 +38,13 @@ jobs:
           terraform init
           terraform validate
           terraform fmt -recursive -check
+
+      - name: Create Awesome Badge
+        uses: schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.GIST_TOKEN }}
+          gistID: bfa95d2cf0275608b4b10616318c6361
+          filename: test.json
+          label: Contributors
+          message: Total number of contributors
+          color: orange
