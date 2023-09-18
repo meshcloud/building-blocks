@@ -27,3 +27,6 @@ The Building Block first downloads the latest version of `sg-cli` and uses that 
 - **project_id** - `Source` is Project Identifier
 
 12.  Now users can add this building block to their tenants
+
+## Backend configuration
+Here you can find an example of how to create a backend.tf file on this [Wiki Page](https://github.com/meshcloud/building-blocks/wiki/%5BUser-Guide%5D-Setting-up-the-Backend-for-terraform-state#how-to-configure-backendtf-file-for-these-providers)
