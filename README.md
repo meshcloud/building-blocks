@@ -11,37 +11,8 @@
 [![Open in Visual Studio Code](https://img.shields.io/static/v1?logo=visualstudiocode&label=&message=Open%20in%20Visual%20Studio%20Code&labelColor=2c2c32&color=007acc&logoColor=007acc)](https://open.vscode.dev/meshcloud/building-blocks)
 
 # Building Blocks - Unlocking Efficiency through Modularization
-Information about how to use or extend these modules can be found in our [Wiki](https://github.com/meshcloud/Building-Blocks/wiki)
-
-##  🎬  What are Building Blocks exactly? 
-To understand how everything fits together check out this video! ⤵️
-
-<a href="https://www.youtube.com/watch?feature=player_embedded&v=xPGKhe-4X_o" target="_blank">
- <img src="https://img.youtube.com/vi/xPGKhe-4X_o/0.jpg" alt="Watch the video"  border="10" /> 
-</a>
-<br></br>
-Building blocks is becomming the new universal primitive for assembling landing zones and cloud tenants in meshStack. Each building block represents an encapsulated piece of functionality provided to an application team. Explained in a single picture below, application teams can flexibly assemble building blocks on the landing zone’s “base-line” as required to support their use case.
-<br></br>
-<img width="1047" alt="image" src="https://github.com/meshcloud/Building-Blocks/assets/96071919/176ef530-ab73-4c4e-9f13-8ee681eb68c1">
-
-## At a glance, Building blocks:
-- have inputs and outputs, forming a building-block-graph tracking dependencies between blocks
-- can directly attach to cloud tenants
-- are mandatory and optional parts that form a landing zone 
-- provide multiple implementation options:
-  - meshStack will include out-of-the-box support for terraform modules
-  - “manual” building blocks enable incremental automation starting from a GUI-based manual process
-  - platform engineers can implement custom blocks using on an external block-runner API
-- are aware of their desired and actual state in a tenant
-
-## Advantages of Building Blocks
-- Application teams have easy self-service access to best practice building blocks as part of transparent landing zones or via the marketplace 
-- Enable you to serve compliant cloud infrastructure to application teams for a variety of use cases by mix and matching building blocks
-- Continuously grow maturity of your Landing Zones
-- Native terraform support - you deliver the configuration we take care of the rest!
-- Providing a low effort alternative to Service Brokers with no yml files required
-- No tenant bindings anymore!
-<img width="1061" alt="image" src="https://github.com/meshcloud/Building-Blocks/assets/96071919/61c08b6e-4c07-4c8f-85d0-0791508a7951">
+Information about what is Building Blocks and how to use or extend these modules can be found in our [Wiki](https://github.com/meshcloud/Building-Blocks/wiki)
+![image](https://github.com/meshcloud/building-blocks/assets/96071919/fcc374fe-8f52-4503-812d-e2434b898794 | width=300)
 
 ## Terraform versions
 This module has been tested using Terraform 1.4.5 and various versions to up the latest at time of release. We advise upgrading to the latest version of terraform.
