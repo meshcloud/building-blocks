@@ -2,7 +2,6 @@
 [![GitHub contributors](https://img.shields.io/github/contributors/meshcloud/building-blocks.svg)](https://github.com/meshcloud/building-blocks/graphs/contributors)
 [![GitHub issues](https://img.shields.io/github/issues/meshcloud/building-blocks.svg)](https://github.com/meshcloud/building-blocks/issues)
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/meshcloud/building-blocks.svg)](https://github.com/meshcloud/building-blocks/pulls/)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 [![GitHub watchers](https://img.shields.io/github/watchers/meshcloud/building-blocks.svg?style=social&label=Watch&maxAge=2592000)](https://GitHub.com/meshcloud/building-blocks/watchers/)
 [![GitHub forks](https://img.shields.io/github/forks/meshcloud/building-blocks.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/meshcloud/building-blocks/network/)
@@ -35,12 +34,12 @@ Based on the recource you are going to deploy, you have to assign required role 
 
 ## Requirements
 To apply one of these building block modules in your cloud environment via meshStack you need:
-- Admin access to the meshStack to be able to add a new building block
+- Access to the meshStack Admin Area to be able to add a new building block
 - Have a configured meshPlatform in your meshStack with an active project inside
 - A service principal in your cloud environment which have the required permissions to apply your module
 
 ## Required Inputs
-Please refer to the readme provided in the modules for a list of the required inputs.
+Please refer to the readme provided inside each module for a list of the required inputs.
 
 ## License
 [Apache License 2.0](https://github.com/meshcloud/Building-Blocks/blob/main/LICENSE)
