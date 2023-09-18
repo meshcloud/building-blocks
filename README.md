@@ -12,7 +12,7 @@
 
 # Building Blocks - Unlocking Efficiency through Modularization
 Information about what is Building Blocks and how to use or extend these modules can be found in our [Wiki](https://github.com/meshcloud/Building-Blocks/wiki)
-<img src="https://github.com/meshcloud/building-blocks/assets/96071919/fcc374fe-8f52-4503-812d-e2434b898794"  width="200" height="400" />
+<img src="https://github.com/meshcloud/building-blocks/assets/96071919/fcc374fe-8f52-4503-812d-e2434b898794"  width="600" height="400" />
 
 ## Terraform versions
 This module has been tested using Terraform 1.4.5 and various versions to up the latest at time of release. We advise upgrading to the latest version of terraform.
