@@ -17,10 +17,26 @@ Include a link or provide clear instructions. For example: "You can find an exam
 5. Include any other pertinent details about the module.
 Consider adding information such as pricing details for the workload, if applicable, to help users better understand the module's implications.
 
-## Pull Request Description
+## Pull Request Description and Naming Convention
 
 Please provide a brief summary of the changes made in this pull request.
 
+### Branch Name:
+A git branch should start with a category. Pick one of these: feature, bugfix, hotfix, or test.
+
+    feature is for adding, refactoring or removing a feature
+    bugfix is for fixing a bug
+    hotfix is for changing code with a temporary solution and/or without following the usual process (usually because of an emergency)
+    test is for experimenting outside of an issue/ticket
+
+### Commit Name:
+The name should follow the Conventional Commit standard and begin with a prefix (e.g. feat, fix, chore). This will help classify the change at a glance.
+
+    feat: is for new functionality
+    fix: for a fix to existing functionality
+    chore: for a change that does not create new functionality but is needed (e.g. documentation, patch version bump)
+    Other options also include docs:, style:, refactor: , and a few other options. We don’t use these so often as they’re generally captured by the above three.
+    
 ## Related Issues
 
 - List any related issues or references (e.g., Fixes #123).
