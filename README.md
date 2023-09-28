@@ -1,12 +1,12 @@
+<p align="center">
 [![GitHub license](https://img.shields.io/github/license/meshcloud/building-blocks.svg)](https://github.com/meshcloud/building-blocks/blob/main/LICENSE)
 [![GitHub contributors](https://img.shields.io/github/contributors/meshcloud/building-blocks.svg)](https://github.com/meshcloud/building-blocks/graphs/contributors)
 [![GitHub issues](https://img.shields.io/github/issues/meshcloud/building-blocks.svg)](https://github.com/meshcloud/building-blocks/issues)
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/meshcloud/building-blocks.svg)](https://github.com/meshcloud/building-blocks/pulls/)
-
 [![GitHub watchers](https://img.shields.io/github/watchers/meshcloud/building-blocks.svg?style=social&label=Watch&maxAge=2592000)](https://GitHub.com/meshcloud/building-blocks/watchers/)
 [![GitHub forks](https://img.shields.io/github/forks/meshcloud/building-blocks.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/meshcloud/building-blocks/network/)
 [![GitHub stars](https://img.shields.io/github/stars/meshcloud/building-blocks.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/meshcloud/building-blocks/stargazers/)
-
+</p>
 [![Open in Visual Studio Code](https://img.shields.io/static/v1?logo=visualstudiocode&label=&message=Open%20in%20Visual%20Studio%20Code&labelColor=2c2c32&color=007acc&logoColor=007acc)](https://open.vscode.dev/meshcloud/building-blocks)
 
 # Building Blocks - Unlocking Efficiency through Modularization
