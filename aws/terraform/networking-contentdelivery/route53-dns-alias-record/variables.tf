@@ -12,7 +12,7 @@ variable "private_zone" {
 
 variable "sub" {
   type        = string
-  description = "DNS record name, excluding the `zone_name`. Leave empty to create an apex record."
+  description = "DNS record name, excluding the `zone_name`. Use the value '@' to create an apex record."
   nullable    = false
 }
 
