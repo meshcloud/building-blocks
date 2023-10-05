@@ -13,10 +13,10 @@ variable "sub" {
   type        = string
   description = "DNS record name, excluding the `zone_name`. Leave empty to create apex records."
   nullable    = false
-  validation {
-    condition     = !(var.type == "CNAME" && var.sub.length > 0) # CNAMEs are illegal at APEX
-    error_message = "CNAME records are illegal at apex, value must be a non-empty string."
-  }
+
+  # note: "CNAME records are illegal at apex, value must be a non-empty string."
+  # terraform can't validate this right now
+  
 }
 
 # Legal DNS record types. Consider shortening this list if you want to constain allowed records
