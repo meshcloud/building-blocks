@@ -1,39 +1,78 @@
-# zone
-variable "private_zone" {
-  type    = bool
-  default = false
-}
-
 variable "zone_name" {
   type        = string
   description = "AWS Route53 zone name in which the record should be created."
 }
 
-# record
-variable "sub" {
-  type = string
+variable "private_zone" {
+  type        = bool
+  default     = false
+  description = "Set to true if the AWS Route 53 zone is a Private Hosted Zone."
 }
 
-variable "type" {
-  type = string
-
+variable "sub" {
+  type        = string
+  description = "DNS record name, excluding the `zone_name`. Leave empty to create apex records."
+  nullable    = false
   validation {
-    condition     = contains(["A", "CNAME"], var.type)
-    error_message = "The type value must be one of 'CNAME', 'A' but was '${var.type}'."
+    condition     = !(var.type == "CNAME" && var.sub.length > 0) # CNAMEs are illegal at APEX
+    error_message = "CNAME records are illegal at apex, value must be a non-empty string."
   }
 }
 
-variable "ttl" {
-  type = string
+# Legal DNS record types. Consider shortening this list if you want to constain allowed records
+# (e.g. SOA, NS) as they allow sub-delegation of DNS zones
+# See https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResourceRecordTypes.html
+variable "type" {
+  type        = string
+  description = "DNS Record type"
 
-  default = "300"
-
+  # unfortunately validation blocks in HCL don't support locals so we have to copy/paste literals here
   validation {
-    condition     = parseint(var.ttl, 10) > 0
-    error_message = "The ttl value must be larger than 0 but was ${var.ttl}."
+    condition = contains([
+      "A",
+      "AAAA",
+      # "CAA",
+      "CNAME",
+      # "DS",
+      "MX",
+      # "NAPTR",
+      # "NS",
+      # "PTR",
+      # "SOA",
+      "SPF",
+      "SRV",
+      "TXT",
+    ], var.type)
+    error_message = "The type value must be one of ${join(", ", [for x in [
+      "A",
+      "AAAA",
+      # "CAA",
+      "CNAME",
+      # "DS",
+      "MX",
+      # "NAPTR",
+      # "NS",
+      # "PTR",
+      # "SOA",
+      "SPF",
+      "SRV",
+      "TXT",
+    ] : "'${x}'"])} but was '${var.type}'."
   }
 }
 
 variable "record" {
-  type = string
+  type        = string
+  description = "DNS record value"
+  nullable    = false
+}
+
+variable "ttl" {
+  type        = string
+  default     = "300"
+  description = "TTL of the record in seconds."
+  validation {
+    condition     = parseint(var.ttl, 10) > 0
+    error_message = "The ttl value must be larger than 0 but was ${var.ttl}."
+  }
 }
