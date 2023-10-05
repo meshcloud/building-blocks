@@ -28,3 +28,6 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+# by convention, these are config files we put into meshstack to configure providers and backends
+config.tf
