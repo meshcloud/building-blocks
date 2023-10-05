@@ -34,20 +34,14 @@ variable "type" {
 
 variable "alias_name" {
   type        = string
-  description = "Aliast target DNS name."
+  description = "Alias target DNS name."
   nullable    = false
-  validation {
-    condition = var.alias_name.length > 0
-  }
 }
 
 variable "alias_zone_id" {
   type        = string
   description = "AWS Route53 hosted zone id for the alias target. Note: These can be magic constants, see https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-aliastarget.html"
   nullable    = false
-  validation {
-    condition = var.alias_name.length > 0
-  }
 }
 
 variable "alias_evaluate_target_health" {
