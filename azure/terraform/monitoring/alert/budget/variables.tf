@@ -7,7 +7,7 @@ variable "budget_name" {
 }
 
 variable "end_date" {
-  type = string
+  type        = string
   description = "Staring date of the budget rule, should be first day of the month"
   validation {
     condition     = can(regex("^(\\d{4}-11-01T\\d{2}:\\d{2}:\\d{2}Z)$", var.start_date))
@@ -16,7 +16,7 @@ variable "end_date" {
 }
 
 variable "start_date" {
-  type = string
+  type        = string
   description = "Staring date of the budget rule, should be first day of the month"
   validation {
     condition     = can(regex("^(\\d{4}-11-01T\\d{2}:\\d{2}:\\d{2}Z)$", var.start_date))
