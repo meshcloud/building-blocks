@@ -38,7 +38,7 @@ resource "google_compute_route" "nat" {
   network                = var.network
   next_hop_instance_zone = google_compute_instance.nat.zone
   next_hop_instance      = google_compute_instance.nat.name
-  dest_range             = "0.0.0.0/24"
+  dest_range             = "0.0.0.0/0"
   priority               = 100 # less than default internet route (i.e. 1000)
 
   tags = [var.tag]
