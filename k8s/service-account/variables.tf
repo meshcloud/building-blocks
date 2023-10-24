@@ -32,3 +32,8 @@ variable "cluster_role" {
   type        = string
   description = "ClusterRole to bind the service account with. e.g. admin, edit, view (or any custom cluster role)"
 }
+
+variable "token" {
+  type        = string
+  description = "Token for the service account executing this module (not this service account)"
+}
