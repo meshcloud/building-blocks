@@ -5,7 +5,7 @@ variable "name" {
 
 variable "namespace" {
   type        = string
-  description = "Namespace where the service account will be created. Recommended: Use input as platform tenant ID in meshStack"
+  description = "Namespace where the service account will be created. Recommended: Use platform tenant ID as input in meshStack"
 }
 
 variable "cluster_name" {
