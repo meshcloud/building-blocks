@@ -45,7 +45,7 @@ resource "azurerm_subnet_network_security_group_association" "bastion_subnet_nsg
 locals {
   bastion_inbound_ports_map = {
     "100" : "22", # If the key starts with a number, you must use the colon syntax ":" instead of "="
-    "110" : "3389"
+    # "110" : "3389"
   }
 }
 ## NSG Inbound Rule for Bastion / Management Subnets
@@ -113,25 +113,3 @@ resource "azurerm_linux_virtual_machine" "bastion_host_linuxvm" {
   }
 }
 
-# Create a Null Resource and Provisioners
-resource "null_resource" "null_copy_ssh_key_to_bastion" {
-  depends_on = [azurerm_linux_virtual_machine.bastion_host_linuxvm]
-  # Connection Block for Provisioners to connect to Azure VM Instance
-  connection {
-    type        = "ssh"
-    host        = azurerm_linux_virtual_machine.bastion_host_linuxvm.public_ip_address
-    user        = azurerm_linux_virtual_machine.bastion_host_linuxvm.admin_username
-    private_key = file("${path.module}/key.pem")
-  }
-  ## File Provisioner: Copies the tkey.pem file to /tmp/key.pem
-  provisioner "file" {
-    source      = "./key.pem"
-    destination = "/tmp/key.pem"
-  }
-  ## Remote Exec Provisioner: Using remote-exec provisioner fix the private key permissions on Bastion Host
-  provisioner "remote-exec" {
-    inline = [
-      "sudo chmod 400 /tmp/key.pem"
-    ]
-  }
-}

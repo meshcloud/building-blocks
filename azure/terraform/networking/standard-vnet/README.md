@@ -1,5 +1,6 @@
 # standard-azure-vnet
-    Azure Virtual Network including one subnet
+    This Building Block creates a resource group and deploys a virtual network along with a subnet. 
+    You can also define the inbound ports with the help of the NSG attached to this subnet.
 
 ## How to use this Building Block in meshStack 
 

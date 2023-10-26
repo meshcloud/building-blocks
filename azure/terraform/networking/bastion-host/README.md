@@ -1,6 +1,6 @@
 # Azure-Bastion_host
     This building block will deploy a linux VM as Bastion host in your virtual network.
-    It has a public IP and the port 22 and 3389 open.
+    It has a public IP and the port 22 open.
 
 ## pre-requirements
 - You should already have a virtual network deployed
@@ -22,7 +22,6 @@
     - add the add the "subscription_id" as "Platform Tenant ID"
     - add the rest of the variables as platform operator or user input
     - add your public key and use the name **key.pub** for the input variable name
-    - add your private key and use the name **key.pem** for the input variable name
 8. On the next page, add the outputs from outputs.tf file and click on Create Building Block
 9. Now users can add this building block to their tenants
 
