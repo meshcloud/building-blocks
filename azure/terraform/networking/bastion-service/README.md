@@ -1,6 +1,6 @@
 # Azure-Bastion-Service
     This module deployes and Azure Bastion Service in your Virtual network. You can then connect to other VMs in the same vnet from portal via this service.
-
+![Azure-Bastion-Service](azure-bastion-icon.png)
 ## pre-requirements
 - You should already have a virtual network deployed
 - You should have a resource group 
