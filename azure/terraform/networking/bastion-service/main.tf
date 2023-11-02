@@ -1,12 +1,14 @@
+
 locals {
-  owners               = var.business_divsion
-  environment          = var.environment
-  resource_name_prefix = "${var.business_divsion}-${var.environment}"
-  #name = "${local.owners}-${local.environment}"
+  owners               = "likvid"
+  environment          = "demo"
+  resource_name_prefix = "${local.owners}-${local.environment}"
   common_tags = {
     owners      = local.owners
     environment = local.environment
   }
+  bastion_service_subnet_name      = "AzureBastionSubnet"
+  bastion_service_address_prefixes = ["10.100.2.0/27"]
 }
 
 
@@ -22,10 +24,10 @@ data "azurerm_virtual_network" "vnet" {
 # Azure Bastion Service - Resources
 ## Resource-1: Azure Bastion Subnet
 resource "azurerm_subnet" "bastion_service_subnet" {
-  name                 = var.bastion_service_subnet_name
+  name                 = local.bastion_service_subnet_name
   resource_group_name  = data.azurerm_resource_group.rg.name
   virtual_network_name = data.azurerm_virtual_network.vnet.name
-  address_prefixes     = var.bastion_service_address_prefixes
+  address_prefixes     = local.bastion_service_address_prefixes
 }
 
 # Resource-2: Azure Bastion Public IP
