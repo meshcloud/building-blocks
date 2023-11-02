@@ -1,12 +1,13 @@
 locals {
-  owners               = var.business_divsion
-  environment          = var.environment
-  resource_name_prefix = "${var.business_divsion}-${var.environment}"
-  #name = "${local.owners}-${local.environment}"
+  owners               = "likvid"
+  environment          = "demo"
+  resource_name_prefix = "${local.owners}-${local.environment}"
   common_tags = {
     owners      = local.owners
     environment = local.environment
   }
+  bastion_subnet_name    = "bastion_subnet"
+  bastion_subnet_address = ["10.100.3.0/27"]
 }
 
 data "azurerm_resource_group" "rg" {
@@ -20,10 +21,10 @@ data "azurerm_virtual_network" "vnet" {
 
 # Resource-1: Create Bastion / Management Subnet
 resource "azurerm_subnet" "bastionsubnet" {
-  name                 = "${data.azurerm_virtual_network.vnet.name}-${var.bastion_subnet_name}"
+  name                 = "${data.azurerm_virtual_network.vnet.name}-${local.bastion_subnet_name}"
   resource_group_name  = data.azurerm_resource_group.rg.name
   virtual_network_name = data.azurerm_virtual_network.vnet.name
-  address_prefixes     = var.bastion_subnet_address
+  address_prefixes     = local.bastion_subnet_address
 }
 
 # Resource-2: Create Network Security Group (NSG)
