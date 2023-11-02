@@ -1,18 +1,19 @@
 # Local Variables
 locals {
-  owners               = var.business_divsion
-  environment          = var.environment
-  resource_name_prefix = "${var.business_divsion}-${var.environment}"
-  #name = "${local.owners}-${local.environment}"
+  owners               = var.workspace_identifier
+  environment          = "demo"
+  resource_name_prefix = "${local.owners}-${local.environment}"
   common_tags = {
     owners      = local.owners
     environment = local.environment
   }
+  vnet_address_space = ["10.100.0.0/16"]
+  subnet_address     = ["10.100.1.0/24"]
 }
 
 # Resource-1: Azure Resource Group
 resource "azurerm_resource_group" "rg" {
-  name     = "${local.resource_name_prefix}-${var.resource_group_name}"
+  name     = "${local.resource_name_prefix}-rg-${var.project_identifier}"
   location = var.resource_group_location
   tags     = local.common_tags
 }
@@ -20,7 +21,7 @@ resource "azurerm_resource_group" "rg" {
 # Resource-2: Create Virtual Network
 resource "azurerm_virtual_network" "vnet" {
   name                = "${local.resource_name_prefix}-${var.vnet_name}"
-  address_space       = var.vnet_address_space
+  address_space       = local.vnet_address_space
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   tags                = local.common_tags
@@ -28,10 +29,10 @@ resource "azurerm_virtual_network" "vnet" {
 
 # Resource-3: Create  Subnet
 resource "azurerm_subnet" "subnet" {
-  name                 = "${azurerm_virtual_network.vnet.name}-${var.subnet_name}"
+  name                 = "${azurerm_virtual_network.vnet.name}-subnet"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = var.subnet_address
+  address_prefixes     = local.subnet_address
 }
 
 # Resource-4: Create Network Security Group (NSG)

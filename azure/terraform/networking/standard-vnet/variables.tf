@@ -1,23 +1,3 @@
-# Generic Input Variables
-# Business Division
-variable "business_divsion" {
-  description = "Business Division in the organization this Infrastructure belongs"
-  type        = string
-  default     = "sap"
-}
-# Environment Variable
-variable "environment" {
-  description = "Environment name used as a prefix"
-  type        = string
-  default     = "dev"
-}
-
-# Azure Resource Group Name 
-variable "resource_group_name" {
-  description = "Resource Group Name"
-  type        = string
-  default     = "rg-default"
-}
 
 # Azure Resources Location
 variable "resource_group_location" {
@@ -34,26 +14,19 @@ variable "vnet_name" {
   type        = string
   default     = "vnet-default"
 }
-variable "vnet_address_space" {
-  description = "Virtual Network address_space"
-  type        = list(string)
-  default     = ["10.0.0.0/16"]
-}
 
-
-#  Subnet Name
-variable "subnet_name" {
-  description = "Virtual Network Subnet Name"
+variable "subscription_id" {
   type        = string
-  default     = "subnet"
-}
-#  Subnet Address Space
-variable "subnet_address" {
-  description = "Virtual Network Subnet Address Spaces"
-  type        = list(string)
-  default     = ["10.0.1.0/24"]
+  description = "You can use 'Platform Tenant ID' as the source for this input variable"
 }
 
 
+variable "project_identifier" {
+  type        = string
+  description = "Use 'Project Identifier' input source in meshStack for this variable"
+}
 
-
+variable "workspace_identifier" {
+  type        = string
+  description = "Use 'workspace Identifier' input source in meshStack for this variable"
+}
