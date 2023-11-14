@@ -10,7 +10,7 @@ You can use it as a self-built platform integration in meshStack.
 2. Click on "Create Platform"
 3. For Platform Type, click the dropdown and hit "Create new Platform Type"
 4. In this modal, enter a fitting name and identifier for your new IONOS platform
-   - For an icon, you can use the file under `./ionos_logo.png`.
+   - For an icon, you can use the file under `./icon.png`.
 5. Continue the Platform Creation process.
 6. Next, you will have to create a Building Block that will connect the Terraform and the newly created Platform.
 7. On the left-hand side go to "Marketplace > Building Blocks" and click "Definitions".
@@ -27,7 +27,8 @@ You can use it as a self-built platform integration in meshStack.
    - Deletion Mode -> pick "Delete Resources" if you want a `tf destroy` to run upon deletion in meshStack.
 10. Go to the next page and skip the Dependency selection
 11. For the Inputs, create the following Inputs:
-    - `IONOS_TOKEN`
+    - `IONOS_TOKEN` (if you don't use an API token but username & password instead,
+      you can do so as well with `IONOS_USERNAME` and `IONOS_PASSWORD`)
       - Set Source -> Static
       - Provide as -> Environment Variable
       - Set the variable to encryped
