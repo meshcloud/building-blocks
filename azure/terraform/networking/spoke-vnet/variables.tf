@@ -30,16 +30,16 @@ variable "subscription_id" {
 }
 
 variable "hub-vnet-rg" {
-  type = string
+  type        = string
   description = "The resource group name holding the hub vnet"
 }
 
 variable "hub-vnet" {
-  type = string
+  type        = string
   description = "The name of the hub virtual network"
 }
 
 variable "hub-route-table" {
-  type = string
+  type        = string
   description = "Name of the route table in the hub network"
 }

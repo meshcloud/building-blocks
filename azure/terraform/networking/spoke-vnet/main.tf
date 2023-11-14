@@ -1,5 +1,5 @@
 locals {
-  prefix-spoke = "${var.vnet_prefix}-spoke-${var.subscription_id}"
+  prefix-spoke           = "${var.vnet_prefix}-spoke-${var.subscription_id}"
   next_hop_in_ip_address = "10.0.0.36" # Change it to private IP of your existing NVA
 }
 
