@@ -18,7 +18,17 @@ variable "dc_description" {
   description = "Virtual Data Center description"
 }
 
-variable "admin_email" {
-  type        = string
-  description = "Enter the e-mail of the admin user"
+variable "users" {
+  type = list(object(
+    {
+      meshIdentifier = string
+      username       = string
+      firstName      = string
+      lastName       = string
+      email          = string
+      euid           = string
+      roles          = list(string)
+    }
+  ))
+  description = "Users and their roles provided by meshStack"
 }
