@@ -1,7 +1,7 @@
 # Azure-Bastion_host
     This building block will deploy a linux VM as Bastion host in your virtual network.
     It has a public IP and the port 22 open.
-![azure-bastion-host-vm](azure-vm-icon.png)
+![azure-bastion-host-vm](icon.png)
 ## pre-requirements
 - You should already have a virtual network deployed
 - You should have a resource group
