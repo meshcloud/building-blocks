@@ -1,3 +1,4 @@
+
 # Local .terraform directories
 .terraform
 
@@ -31,3 +32,4 @@ terraform.rc
 
 # by convention, these are config files we put into meshstack to configure providers and backends
 config.tf
+key.json
