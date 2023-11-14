@@ -1,7 +1,7 @@
 # IONOS Virtual Data Center Building Block
 
-Module that creates a Virtual Data Center in IONOS Cloud and assigns a given user with Admin Permissions
-in the newly created Virtual Data Center
+Module that creates a Virtual Data Center in IONOS Cloud and assigns users in meshStack with Project permissions
+in the newly created Virtual Data Center.
 You can use it as a self-built platform integration in meshStack.
 
 ## How to create this Platform Integration in meshStack
@@ -38,6 +38,7 @@ You can use it as a self-built platform integration in meshStack.
       from `./variables.tf`
       - Set the `workspace_id` Source -> Workspace Identifier
       - Set the `project_id` Source -> Project Identifier
+      - Set the `users` Source -> User Permissions
     - Backend configuration:
        - Select "File" as input type and upload the backend.tf file.
        - Add related environment variables based on your backend configuration (e.g. client_id and client_secret for azure, SA_ID and SA_EMAIL for GCS)
