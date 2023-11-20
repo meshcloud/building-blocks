@@ -1,19 +1,6 @@
-terraform {
-
-  required_version = ">=0.12"
-
-  required_providers {
-    azurerm = {
-      source                = "hashicorp/azurerm"
-      version               = "3.27.0"
-      configuration_aliases = [azurerm.spoke-provider, azurerm.hub-provider]
-    }
-  }
-
-}
-
 locals {
-  prefix-spoke = "${var.vnet_prefix}-spoke-${var.subscription_id}"
+  prefix-spoke           = "${var.vnet_prefix}-spoke-${var.subscription_id}"
+  next_hop_in_ip_address = "10.0.0.36" # Change it to private IP of your existing NVA
 }
 
 resource "azurerm_resource_group" "spoke-vnet-rg" {
@@ -44,33 +31,12 @@ resource "azurerm_virtual_network" "spoke-vnet" {
   }
 }
 
-resource "azurerm_subnet" "onprem-connect-subnet" {
+resource "azurerm_subnet" "spoke-vnet-subnet" {
   provider             = azurerm.spoke-provider
-  name                 = "onprem-connect-subnet"
+  name                 = "spoke-vnet-subnet"
   resource_group_name  = azurerm_resource_group.spoke-vnet-rg.name
   virtual_network_name = azurerm_virtual_network.spoke-vnet.name
   address_prefixes     = [var.address_space_workload]
-}
-
-resource "azurerm_network_interface" "spoke-nic" {
-  provider             = azurerm.spoke-provider
-  name                 = "${local.prefix-spoke}-nic"
-  location             = azurerm_resource_group.spoke-vnet-rg.location
-  resource_group_name  = azurerm_resource_group.spoke-vnet-rg.name
-  enable_ip_forwarding = true
-
-  ip_configuration {
-    name                          = local.prefix-spoke
-    subnet_id                     = azurerm_subnet.onprem-connect-subnet.id
-    private_ip_address_allocation = "Dynamic"
-  }
-
-  lifecycle {
-    ignore_changes = [
-      # Ignore changes to tags, as tags are managed by meshStack and policies
-      tags
-    ]
-  }
 }
 
 resource "azurerm_route_table" "spoke-rt" {
@@ -94,14 +60,14 @@ resource "azurerm_route" "spoke-default-route" {
   route_table_name    = azurerm_route_table.spoke-rt.name
   name                = "default"
   address_prefix      = "0.0.0.0/0"
-  next_hop_type       = "VnetLocal"
+  next_hop_type       = "VirtualNetworkGateway"
 }
 
 resource "azurerm_subnet_route_table_association" "spoke-rt-spoke-vnet-subnet" {
   provider       = azurerm.spoke-provider
-  subnet_id      = azurerm_subnet.onprem-connect-subnet.id
+  subnet_id      = azurerm_subnet.spoke-vnet-subnet.id
   route_table_id = azurerm_route_table.spoke-rt.id
-  depends_on     = [azurerm_subnet.onprem-connect-subnet]
+  depends_on     = [azurerm_subnet.spoke-vnet-subnet]
 }
 
 #
@@ -109,12 +75,12 @@ resource "azurerm_subnet_route_table_association" "spoke-rt-spoke-vnet-subnet" {
 #
 data "azurerm_resource_group" "hub-vnet-rg" {
   provider = azurerm.hub-provider
-  name     = "hub-westeurope-vnet-rg"
+  name     = var.hub-vnet-rg
 }
 
 data "azurerm_virtual_network" "hub-vnet" {
   provider            = azurerm.hub-provider
-  name                = "hub-westeurope-vnet"
+  name                = var.hub-vnet
   resource_group_name = data.azurerm_resource_group.hub-vnet-rg.name
 }
 
@@ -128,7 +94,7 @@ resource "azurerm_virtual_network_peering" "spoke-hub-peer" {
   allow_virtual_network_access = true
   allow_forwarded_traffic      = true
   allow_gateway_transit        = false
-  use_remote_gateways          = false
+  use_remote_gateways          = true
   depends_on                   = [azurerm_virtual_network.spoke-vnet]
 }
 
@@ -149,23 +115,20 @@ resource "azurerm_virtual_network_peering" "hub-spoke-peer" {
 #
 # Routing from hub to spoke
 #
-data "azurerm_resource_group" "hub-nva-rg" {
-  provider = azurerm.hub-provider
-  name     = "hub-westeurope-nva-rg"
-}
+
 
 data "azurerm_route_table" "hub-gateway-rt" {
   provider            = azurerm.hub-provider
-  name                = "hub-gateway-rt"
-  resource_group_name = data.azurerm_resource_group.hub-nva-rg.name
+  name                = var.hub-route-table
+  resource_group_name = data.azurerm_resource_group.hub-vnet-rg.name
 }
 
 resource "azurerm_route" "to-spoke" {
   provider               = azurerm.hub-provider
   name                   = "toSpoke-${local.prefix-spoke}"
-  resource_group_name    = data.azurerm_resource_group.hub-nva-rg.name
+  resource_group_name    = data.azurerm_resource_group.hub-vnet-rg.name
   route_table_name       = data.azurerm_route_table.hub-gateway-rt.name
   address_prefix         = var.address_space_workload
   next_hop_type          = "VirtualAppliance"
-  next_hop_in_ip_address = "10.0.0.36"
+  next_hop_in_ip_address = local.next_hop_in_ip_address
 }
