@@ -63,7 +63,7 @@ resource "azurerm_consumption_budget_subscription" "subscription_budget" {
 // Action Group
 //-----------------------------------------------
 resource "azurerm_resource_group" "rg_action_group" {
-  name = var.resource_group_for_action_group_name
+  name     = var.resource_group_for_action_group_name
   location = var.location
 }
 resource "azurerm_monitor_action_group" "action_group" {
