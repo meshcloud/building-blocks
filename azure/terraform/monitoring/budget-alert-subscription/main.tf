@@ -3,7 +3,7 @@
 // Budget on subscription level
 //-----------------------------------------------
 data "azurerm_subscription" "subscription" {
-  subscription_id = var.ARM_SUBSCRIPTION_ID
+  subscription_id = var.subscription_id
 }
 
 resource "azurerm_consumption_budget_subscription" "subscription_budget" {

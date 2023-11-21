@@ -1,5 +1,5 @@
 # Budget-Alert-building-block
-This building block sets up a budget within the selected scope, which can include "Management Group," "Subscription," or "Resource Group." In the case of the latter two scopes, an associated Action group will be configured as well.
+This building block sets up a budget at your subscription scope. In additition, an associated Action group will be configured as well.
 
 ## How to use this Building Block in meshStack 
 
@@ -10,7 +10,7 @@ This building block sets up a budget within the selected scope, which can includ
 5. Select "Terraform" in Implementation Type and put in the Terraform version
 6. Copy the repository HTTPS address to the "Git Repository URL" field (if its a private repo, add your SSH key) click next
 7. For the input do the following
-    - add the service principal's "ARM_CLIENT_SECRET" and "ARM_CLIENT_ID" as Environmental Variable
+    - Click on "generate auth inputs" button and fill the inputs: "ARM_CLIENT_SECRET", "ARM_CLIENT_ID", "ARM_SUBSCRIPTION_ID", "ARM_TENANT_ID" as Environmental Variable
     - add the add the "subscription_id" as "Platform Tenant ID"
     - add the rest of the variables as static, platform operator or user input
 8. On the next page, add the outputs from outputs.tf file and click on Create Building Block

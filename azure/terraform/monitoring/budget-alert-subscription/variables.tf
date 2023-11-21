@@ -6,14 +6,18 @@ variable "location" {
 
 variable "budget_name" {
   type = string
+  default = "budget_alert"
 }
 
-variable "ARM_SUBSCRIPTION_ID" {
+variable "subscription_id" {
   type = string
+  description = "The ID of the subscription at which you want to assign the budget"
 }
 
 variable "resource_group_for_action_group_name" {
   type = string
+  description = "The name of the resource group to deploy the action group inside"
+  default = "rg_action_group"
 }
 
 variable "end_date" {
