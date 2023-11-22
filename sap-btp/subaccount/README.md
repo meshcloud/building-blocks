@@ -1,7 +1,8 @@
 # SAP BTP subaccount with environment configuration
-This building block Creates a subaccount in SAP BTP which can have an environment like cloudfoundry configured. 
 
-## How to use this Building Block in meshStack 
+This building block Creates a subaccount in SAP BTP.
+
+## How to use this Building Block in meshStack
 
 1. Go to your meshStack admin area and click on "Building Blocks" from the left pane
 2. Click on "Create Building Block"
@@ -20,4 +21,5 @@ This building block Creates a subaccount in SAP BTP which can have an environmen
 9. Now users can add this building block to their tenants
 
 ## Backend configuration
+
 Here you can find an example of how to create a backend.tf file on this [Wiki Page](https://github.com/meshcloud/building-blocks/wiki/%5BUser-Guide%5D-Setting-up-the-Backend-for-terraform-state#how-to-configure-backendtf-file-for-these-providers)
