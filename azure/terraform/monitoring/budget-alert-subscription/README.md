@@ -1,5 +1,10 @@
 # Budget-Alert-building-block
 This building block sets up a budget at your subscription scope. In additition, an associated Action group will be configured as well.
+The "Contact_emails" variable should contain the email of the people who ought to receive the alert email. The action group on top of that can add more functionalities like triggering a function app or a webhook.
+
+
+![image](https://github.com/meshcloud/building-blocks/assets/96071919/a68461a8-f4fc-42f9-9496-50926b858b8d)
+
 
 ## How to use this Building Block in meshStack 
 
