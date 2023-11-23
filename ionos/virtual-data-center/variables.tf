@@ -30,5 +30,5 @@ variable "users" {
       roles          = list(string)
     }
   ))
-  description = "Users and their roles provided by meshStack"
+  description = "Users and their roles provided by meshStack (Note that users must exist in IONOS)"
 }
