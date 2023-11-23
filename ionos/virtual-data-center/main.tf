@@ -53,7 +53,7 @@ resource "ionoscloud_share" "reader" {
   share_privilege = false
 
   # workaround to create shares sequentially. See https://github.com/ionos-cloud/terraform-provider-ionoscloud/issues/489
-  depends_on = [ionoscloud_share.editor]
+  depends_on = [ionoscloud_share.admin, ionoscloud_share.editor]
 }
 
 resource "ionoscloud_group" "admin" {
