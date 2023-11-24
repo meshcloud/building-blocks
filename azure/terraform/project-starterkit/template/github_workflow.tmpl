@@ -1,0 +1,81 @@
+resource "github_repository_file" "pipelineyml_${jsondecode(binding).bindingId}" {
+  repository          = github_repository.managed_${jsondecode(binding).serviceInstanceId}.name
+  commit_message      = local.commit_message
+  commit_author       = local.commit_author
+  commit_email        = local.commit_email
+
+  file                = ".github/workflows/pipeline.yml"
+  content             = <<-EOT
+name: Deploy
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+      - uses: hashicorp/setup-terraform@v1
+      - run: terraform init
+      - run: terraform apply -auto-approve
+      - name: git
+        run: |
+          git config --global user.email "team@example.com"
+          git config --global user.name "Infrastructure Bot"
+          git add .
+          git diff-index --quiet HEAD || git commit -m "Update Infrastructure"
+          git push
+  EOT
+}
+
+# This Service Principal is used by the pipeline for managing resources on Azure.
+resource "azuread_application" "pipeline_application_${jsondecode(binding).bindingId}" {
+  display_name = "UniPipe Pipeline Application"
+
+  web {
+    implicit_grant {
+      access_token_issuance_enabled = false
+    }
+  }
+
+}
+
+resource "azuread_service_principal" "pipeline_service_principal_${jsondecode(binding).bindingId}" {
+  application_id = azuread_application.pipeline_application_${jsondecode(binding).bindingId}.application_id
+}
+
+resource "azurerm_role_assignment" "pipeline_${jsondecode(binding).bindingId}" {
+  scope                = "${jsondecode(binding).bindResource.tenant_id}"
+  role_definition_name = "Owner"
+  principal_id         = azuread_service_principal.pipeline_service_principal_${jsondecode(binding).bindingId}.object_id
+}
+
+resource "azuread_service_principal_password" "pipeline_service_principal_pw_${jsondecode(binding).bindingId}" {
+  service_principal_id = azuread_service_principal.pipeline_service_principal_${jsondecode(binding).bindingId}.id
+  end_date             = "2999-01-01T01:02:03Z" # no expiry
+}
+
+resource "github_actions_secret" "arm_client_id_${jsondecode(binding).bindingId}" {
+  repository       = github_repository.managed_${jsondecode(binding).serviceInstanceId}.name
+  secret_name     = "ARM_CLIENT_ID"
+  plaintext_value = azuread_service_principal.pipeline_service_principal_${jsondecode(binding).bindingId}.id
+}
+
+resource "github_actions_secret" "arm_client_secret_${jsondecode(binding).bindingId}" {
+  repository       = github_repository.managed_${jsondecode(binding).serviceInstanceId}.name
+  secret_name     = "ARM_CLIENT_SECRET"
+  plaintext_value = azuread_service_principal_password.pipeline_service_principal_pw_${jsondecode(binding).bindingId}.value
+
+}
+
+resource "github_actions_secret" "arm_tenant_id_${jsondecode(binding).bindingId}" {
+  repository       = github_repository.managed_${jsondecode(binding).serviceInstanceId}.name
+  secret_name     = "ARM_TENANT_ID"
+  plaintext_value = "703c8d27-13e0-4836-8b2e-8390c588cf80" # meshcloud-dev
+}

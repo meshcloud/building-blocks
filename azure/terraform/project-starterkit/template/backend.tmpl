@@ -1,0 +1,13 @@
+terraform {
+  backend "gcs" {
+    bucket = "unipipe-pipeline-bucket"
+    prefix = "${mesh_customer}/${mesh_project}/terraform.tfstate"
+
+  }
+
+  required_providers {
+    local = {
+      source = "hashicorp/local"
+    }
+  }
+}
