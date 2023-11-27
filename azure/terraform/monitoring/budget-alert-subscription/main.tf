@@ -30,7 +30,7 @@ resource "azurerm_consumption_budget_subscription" "subscription_budget" {
     contact_emails = var.contact_emails
 
     contact_groups = [
-      var.azurerm_monitor_action_group.action_group.id,
+      var.azurerm_monitor_action_group_id,
     ]
   }
 
@@ -43,7 +43,7 @@ resource "azurerm_consumption_budget_subscription" "subscription_budget" {
     contact_emails = var.contact_emails
 
     contact_groups = [
-      var.azurerm_monitor_action_group.action_group.id,
+      var.azurerm_monitor_action_group_id,
     ]
 
   }
