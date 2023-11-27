@@ -60,7 +60,6 @@ resource "ionoscloud_group" "admin" {
   count                          = length(local.admins) > 0 ? 1 : 0
   name                           = "${var.workspace_id}-${var.project_id}-admins"
   user_ids                       = [for d in data.ionoscloud_user.admins : d["id"]]
-  create_datacenter              = true
   create_snapshot                = true
   reserve_ip                     = true
   create_pcc                     = true
