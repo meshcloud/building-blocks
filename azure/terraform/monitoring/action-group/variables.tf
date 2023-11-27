@@ -26,4 +26,5 @@ variable "webhook_name" {
 variable "webhook_url" {
   type        = string
   description = "Url of the webhook. e.g. in case of using logic app, you can retrieve this value from overview pane of that logic app"
+  default     = "https://webhookurl.local"
 }
