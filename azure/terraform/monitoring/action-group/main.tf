@@ -19,7 +19,7 @@ resource "azurerm_monitor_action_group" "action_group" {
 
   webhook_receiver {
     name                    = var.webhook_name
-    service_uri             = var.webhook_url
+    service_uri             = var.webhook_uri
     use_common_alert_schema = true
   }
 }

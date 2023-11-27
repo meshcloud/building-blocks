@@ -23,8 +23,8 @@ variable "webhook_name" {
   description = "Name of the webhook used to receive the message in Action group"
 }
 
-variable "webhook_url" {
+variable "webhook_uri" {
   type        = string
-  description = "Url of the webhook. e.g. in case of using logic app, you can retrieve this value from overview pane of that logic app"
-  default     = "https://webhookurl.local"
+  description = "Url of the webhook. e.g. in case of using logic app, you can retrieve this value from overview pane of that logic app (workflow URL)"
+  default     = "https://webhookuri.local"
 }

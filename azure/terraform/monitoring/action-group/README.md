@@ -1,9 +1,6 @@
-# Logic-App-Alert-To-Slack Building-Block
-This logic app workflow is based on the consumption model. Using this Buildingblock, a connection resource will be created to access your slack channel. 
-
-## Requirements
-- You have to authorize the access to slack via azure portal (in the slack-connection resource -> edit API -> authorize -> save)
-- You have to manually copy the workflow URL from the logic app overview pane, and then paste it inside URI field of the webhook inside you action group
+# Action Group Building-Block
+This is a monitorin action group building block. Can be used in several places in alerting purposes and configured to trigger different APIs or functions.
+more info on: https://learn.microsoft.com/en-us/shows/azure-friday/azure-monitor-action-groups
 
 ## How to use this Building Block in meshStack 
 
