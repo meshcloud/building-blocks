@@ -1,10 +1,7 @@
 locals {
-  start_date                           = formatdate("YYYY-MM-01'T'hh:mm:ssZ", timestamp())
-  end_date                             = formatdate("2026-MM-01'T'hh:mm:ssZ", local.start_date)
-  location                             = "germanywestcentral"
-  action_group_name                    = "budget_action_group"
-  action_group_short_name              = "bdgt_ag"
-  resource_group_for_action_group_name = "rg-${local.action_group_name}"
+  start_date = formatdate("YYYY-MM-01'T'hh:mm:ssZ", timestamp())
+  end_date   = formatdate("2026-MM-01'T'hh:mm:ssZ", local.start_date)
+  location   = "germanywestcentral"
 }
 //-----------------------------------------------
 // Budget on subscription level
@@ -33,7 +30,7 @@ resource "azurerm_consumption_budget_subscription" "subscription_budget" {
     contact_emails = var.contact_emails
 
     contact_groups = [
-      azurerm_monitor_action_group.action_group.id,
+      var.azurerm_monitor_action_group.action_group.id,
     ]
   }
 
@@ -46,28 +43,9 @@ resource "azurerm_consumption_budget_subscription" "subscription_budget" {
     contact_emails = var.contact_emails
 
     contact_groups = [
-      azurerm_monitor_action_group.action_group.id,
+      var.azurerm_monitor_action_group.action_group.id,
     ]
 
   }
 
-}
-//-----------------------------------------------
-// Action Group
-//-----------------------------------------------
-resource "azurerm_resource_group" "rg_action_group" {
-  name     = local.resource_group_for_action_group_name
-  location = local.location
-}
-resource "azurerm_monitor_action_group" "action_group" {
-  name                = local.action_group_name
-  resource_group_name = azurerm_resource_group.rg_action_group.name
-  short_name          = local.action_group_short_name
-
-
-  webhook_receiver {
-    name                    = "callmyapiaswell"
-    service_uri             = "http://example.com/alert"
-    use_common_alert_schema = true
-  }
 }
