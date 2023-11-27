@@ -1,7 +1,7 @@
 locals {
   location                = var.location
   action_group_name       = var.action_group_name
-  action_group_short_name = "var.action_group_short_name"
+  action_group_short_name = var.action_group_short_name
 }
 
 //-----------------------------------------------

@@ -1,5 +1,5 @@
 locals {
-  logicapp_name           = "alert-to-slack"
+  logicapp_name = "alert-to-slack"
 }
 resource "azurerm_resource_group" "workflow_rg" {
   name     = "rg-${var.location}-workflow"
