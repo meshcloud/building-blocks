@@ -1,7 +1,5 @@
 locals {
   logicapp_name           = "alert-to-slack"
-  action_group_name       = "ag-budget-alert-receivers"
-  action_group_short_name = "ag-bdgt"
 }
 resource "azurerm_resource_group" "workflow_rg" {
   name     = "rg-${var.location}-workflow"

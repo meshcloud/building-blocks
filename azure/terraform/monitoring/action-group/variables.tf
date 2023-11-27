@@ -8,6 +8,11 @@ variable "action_group_name" {
   description = "Name of the Action group"
 }
 
+variable "action_group_short_name" {
+  type        = string
+  description = "Short Name of the Action group"
+}
+
 variable "resource_group_name" {
   type        = string
   description = "name of the resource group where the action group will reside"
