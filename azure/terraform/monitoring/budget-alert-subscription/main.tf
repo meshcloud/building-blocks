@@ -28,10 +28,6 @@ resource "azurerm_consumption_budget_subscription" "subscription_budget" {
     operator  = "EqualTo"
 
     contact_emails = var.contact_emails
-
-    contact_groups = [
-      var.azurerm_monitor_action_group_id,
-    ]
   }
 
   notification {
@@ -41,10 +37,6 @@ resource "azurerm_consumption_budget_subscription" "subscription_budget" {
     threshold_type = "Forecasted"
 
     contact_emails = var.contact_emails
-
-    contact_groups = [
-      var.azurerm_monitor_action_group_id,
-    ]
 
   }
 
