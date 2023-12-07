@@ -30,11 +30,6 @@ variable "forcasted_threshold" {
   description = "The forcasted percentage of the monthly budget at which you wish to activate the alert upon reaching. E.g. '15' for 15% or '120' for 120%"
 }
 
-variable "azurerm_monitor_action_group_id" {
-  type        = string
-  description = "ID of the Action group if existed."
-  default     = ""
-}
 
 // Uncomment next 2 variables if you want to change the start and end date via inputs --------------------------------
 # variable "end_date" {
