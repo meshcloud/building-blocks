@@ -30,8 +30,20 @@ variable "forcasted_threshold" {
   description = "The forcasted percentage of the monthly budget at which you wish to activate the alert upon reaching. E.g. '15' for 15% or '120' for 120%"
 }
 
+variable "resource_group_for_action_group" {
+  type        = string
+  description = "the resource group holding the action group"
+  default     = "rg-action-group"
+}
 
-// Uncomment next 2 variables if you want to change the start and end date via inputs --------------------------------
+variable "location" {
+  type        = string
+  description = "the location where resources will be deployes"
+  default     = "germanywestcentral"
+
+}
+// Uncomment next 2 variables if you want to change the start and end date via inputs 
+// in main.tf change all 'local.start_date' and 'local.end_date' to 'var.start_date' and 'var.end_date' respectively"
 # variable "end_date" {
 #   type        = string
 #   description = "End date of the budget rule, Timestamp in the format YYYY-MM-DDTHH:MM:SSZ"

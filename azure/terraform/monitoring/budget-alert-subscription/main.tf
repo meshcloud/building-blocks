@@ -1,7 +1,8 @@
 locals {
-  start_date = formatdate("YYYY-MM-01'T'hh:mm:ssZ", timestamp())
-  end_date   = formatdate("2026-MM-01'T'hh:mm:ssZ", local.start_date)
-  location   = "germanywestcentral"
+  start_date              = formatdate("YYYY-MM-01'T'hh:mm:ssZ", timestamp())
+  end_date                = formatdate("2026-MM-01'T'hh:mm:ssZ", local.start_date)
+  action_group_name       = "budget-alert-action-group"
+  action_group_short_name = "bdgt-ap"
 }
 //-----------------------------------------------
 // Budget on subscription level
@@ -28,6 +29,7 @@ resource "azurerm_consumption_budget_subscription" "subscription_budget" {
     operator  = "EqualTo"
 
     contact_emails = var.contact_emails
+    contact_groups = [azurerm_monitor_action_group.action_group.id]
   }
 
   notification {
@@ -37,7 +39,21 @@ resource "azurerm_consumption_budget_subscription" "subscription_budget" {
     threshold_type = "Forecasted"
 
     contact_emails = var.contact_emails
-
+    contact_groups = [azurerm_monitor_action_group.action_group.id]
   }
 
+}
+
+//-----------------------------------------------
+// Action Group
+//-----------------------------------------------
+
+resource "azurerm_resource_group" "action_group_rg" {
+  name     = var.resource_group_for_action_group
+  location = var.location
+}
+resource "azurerm_monitor_action_group" "action_group" {
+  name                = local.action_group_name
+  resource_group_name = azurerm_resource_group.action_group_rg.name
+  short_name          = local.action_group_short_name
 }
