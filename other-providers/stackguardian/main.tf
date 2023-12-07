@@ -1,7 +1,7 @@
 resource "null_resource" "sg_integration" {
   provisioner "local-exec" {
     command = <<EOF
-curl -o sg-cli https://raw.githubusercontent.com/StackGuardian/sg-cli/982af6d83e889c012d648cbf89896b9aa2f64695/shell/sg-cli
+curl -o sg-cli https://raw.githubusercontent.com/StackGuardian/sg-cli/main/sg-cli
 chmod +x sg-cli
 
 ./sg-cli stack create --org ${var.sg_organization} --workflow-group ${var.sg_workflow_group} --run --output-json --wait --patch-payload '{"ResourceName": "${var.customer_id}_${var.project_id}_${var.building_block_uuid}","TemplatesConfig": {"templates": [{"VCSConfig": {"iacInputData": {"schemaType": "RAW_JSON","data": {"sg_subscription_id": "${var.subscription_id}","sg_tenant_id": "${var.tenant_id}"}}}}]}}' -- payload.json > output.txt
