@@ -9,14 +9,14 @@ resource "google_billing_budget" "budget" {
     projects = ["projects/${var.projectid}"]
   }
 
-  display_name = "Example Billing Budget"
+  display_name = "${var.projectid}-budget"
   amount {
     specified_amount {
       currency_code = "EUR"
-      units         = "100"
+      units         = var.budget_amount
     }
   }
   threshold_rules {
-    threshold_percent = 0.5
+    threshold_percent = var.alert_treshold
   }
 }
