@@ -30,3 +30,4 @@ variable "user_to_invite_role" {
     condition     = contains(["Datadog Admin Role", "Datadog Read Only Role", "Datadog Standard Role"], var.user_to_invite_role)
     error_message = "The user_role must be either 'Datadog Admin Role', 'Datadog Read Only Role' or 'Datadog Standard Role'."
   }
+}

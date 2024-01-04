@@ -6,7 +6,7 @@ resource "random_string" "unique" {
 }
 
 data "datadog_role" "default_user" {
-  filter = var.user_role
+  filter = var.user_to_invite_role
 }
 
 # Create a new Datadog user
