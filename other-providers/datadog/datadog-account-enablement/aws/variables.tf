@@ -35,15 +35,15 @@ variable "aws_region" {
   default = "eu-central-1"
 }
 
-variable "aws_access_key" {
-  type = string
-  description = "Access key to allow terraform to apply changes in the aws account"
-}
+#variable "aws_access_key" {
+#  type = string
+#  description = "Access key to allow terraform to apply changes in the aws account"
+#}
 
-variable "aws_secret_key" {
-  type = string
-  description = "Secret to allow terraform to apply changes in the aws account"
-}
+#variable "aws_secret_key" {
+#  type = string
+#  description = "Secret to allow terraform to apply changes in the aws account"
+#}
 
 variable "datadog_role_name" {
   type        = string
