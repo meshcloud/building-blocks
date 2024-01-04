@@ -9,7 +9,7 @@ variable "datadog_app_key" {
 }
 variable "datadog_url" {
   type        = string
-  default = "https://api.datadoghq.eu/"
+  default     = "https://api.datadoghq.eu/"
   description = "Regional URL"
 }
 
@@ -28,10 +28,15 @@ variable "tenant_id" {
   description = "meshStack tenant ID to integrate with Datadog"
 }
 
+variable "child_org_name" {
+  type        = string
+  description = "Name of Datadog child organization where aws account will be integrated"
+}
+
 # AWS part
 
 variable "aws_region" {
-  type = string
+  type    = string
   default = "eu-central-1"
 }
 

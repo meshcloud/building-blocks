@@ -3,7 +3,7 @@
 resource "datadog_integration_aws" "onboarding" {
   account_id = var.tenant_id
   role_name  = var.datadog_role_name
-  host_tags  = ["workspaceid:${var.workspace_id}", "projectid:${var.project_id}"]
+  host_tags  = ["workspaceid:${var.workspace_id}", "projectid:${var.project_id}", "tenantid:${var.tenant_id}"]
   account_specific_namespace_rules = {
     auto_scaling = false
     opsworks     = false
