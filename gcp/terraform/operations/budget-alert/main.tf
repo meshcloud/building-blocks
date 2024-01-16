@@ -17,6 +17,6 @@ resource "google_billing_budget" "budget" {
     }
   }
   threshold_rules {
-    threshold_percent = var.alert_treshold
+    threshold_percent = var.alert_threshold
   }
 }
