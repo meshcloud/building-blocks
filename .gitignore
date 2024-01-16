@@ -33,3 +33,7 @@ terraform.rc
 # by convention, these are config files we put into meshstack to configure providers and backends
 config.tf
 key.json
+credential.json
+credentials.json
+generated-backend.tf
+generated-provider.tf

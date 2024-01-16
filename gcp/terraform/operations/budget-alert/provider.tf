@@ -1,5 +1,5 @@
-// Uncomment this section if you don't generate provider's configuration generated 
 
+// Uncomment this section if you don't have provider's configuration generated from collie-hub
 
 # terraform {
 #   required_providers {
@@ -9,6 +9,7 @@
 #     }
 #   }
 # }
+
 
 # provider "google" {
 #   project               = var.projectid
