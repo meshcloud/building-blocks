@@ -13,7 +13,7 @@ variable "budget_amount" {
   description = "The amount of monthly Budget specified for this project"
 }
 
-variable "alert_treshold" {
+variable "alert_threshold" {
   type        = string
   description = "Ratio of the budget amount that you want to receive an alert when it reached. e.g. '0.5' means 50%"
 }
