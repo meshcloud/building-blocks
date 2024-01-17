@@ -42,23 +42,3 @@ variable "location" {
   default     = "germanywestcentral"
 
 }
-// Uncomment next 2 variables if you want to change the start and end date via inputs 
-// in main.tf change all 'local.start_date' and 'local.end_date' to 'var.start_date' and 'var.end_date' respectively"
-# variable "end_date" {
-#   type        = string
-#   description = "End date of the budget rule, Timestamp in the format YYYY-MM-DDTHH:MM:SSZ"
-#   validation {
-#     condition     = can(regex("^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])T\\d{2}:\\d{2}:\\d{2}Z$", var.end_date))
-#     error_message = "Timestamp must be in the format YYYY-MM-DDTHH:MM:SSZ"
-#   }
-# }
-
-# variable "start_date" {
-#   type        = string
-#   description = "Start date of the budget rule, should be first day of the month. Timestamp in the format YYYY-MM-DDTHH:MM:SSZ"
-#   validation {
-#     condition     = can(regex("^\\d{4}-(0[1-9]|1[0-2])-(01)T\\d{2}:\\d{2}:\\d{2}Z$", var.start_date))
-#     error_message = "The 'start_date' must be in the format 'YYYY-MM-01THH:MM:SSZ', e.g., '2023-11-01T00:00:00Z'."
-#   }
-# }
-//------------------------------------------------------------------------------------------------------------------------
