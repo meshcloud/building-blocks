@@ -7,7 +7,7 @@ The "Contact_emails" variable should contain the email of the people who ought t
 
 
 ## How to use this Building Block in meshStack 
-
+**Note**: If you are ***not*** using Collie-hub to generate the backend and provider information, please uncomment the "provider_alternate.tf" lines.
 1. Go to your meshStack admin area and click on "Building Blocks" from the left pane
 2. Click on "Create Building Block"
 3. Fill out the general information and click next
