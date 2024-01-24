@@ -17,3 +17,8 @@ variable "contact_email" {
   type        = list(string)
   description = "list of emails which should receive the budget alerts. e.g. ['devops@example.com']"
 }
+
+variable "aws_account_id" {
+  type = string
+  description = "The AWS Account ID. You can user 'Platform Tenant ID'"
+}
