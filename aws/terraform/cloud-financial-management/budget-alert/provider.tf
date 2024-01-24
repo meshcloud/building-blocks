@@ -9,7 +9,7 @@ terraform {
   }
 }
 
-provider "aws" {
-  # Configuration options
-}
+# provider "aws" {
+#   # Configuration options
+# }
 
