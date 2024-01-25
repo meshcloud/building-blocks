@@ -31,3 +31,8 @@ variable "user_to_invite_role" {
     error_message = "The user_role must be either 'Datadog Admin Role', 'Datadog Read Only Role' or 'Datadog Standard Role'."
   }
 }
+
+variable "child_org_name" {
+  type = string
+  description = "Name of the child organization which user would like to join. This value is currently not used"
+}

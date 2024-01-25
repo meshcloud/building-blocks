@@ -1,3 +1,11 @@
+
+# Collect current users assinged to the project and their permissions
+locals {
+  stdusers  = { for user in var.users : user.username => user if contains(user["roles"], "admin") || contains(user["roles"], "user")  }
+  #users = { for user in var.users : user.username => user if contains(user["roles"], "user") }
+  readers = { for user in var.users : user.username => user if contains(user["roles"], "reader") }
+}
+
 # Create a new Datadog - Amazon Web Services integration
 # Enable datadog plugins for AWS
 resource "datadog_integration_aws" "onboarding" {
@@ -8,6 +16,24 @@ resource "datadog_integration_aws" "onboarding" {
     auto_scaling = false
     opsworks     = false
   }
+}
+
+// Project admins and users are mapped to Datadog Standard roles
+resource "datadog_user" "stdusers" {
+  for_each = local.stdusers
+  email    = each.key
+  name     = join(" ", [each.value["firstName"],each.value["lastName"]])
+  roles = ["Datadog Standard Role"]
+  send_user_invitation = false
+}
+
+// Project admins are mapped to Datadog Standard roles
+resource "datadog_user" "readers" {
+  for_each = local.readers
+  email    = each.key
+  name     = join(" ", [each.value["firstName"],each.value["lastName"]])
+  roles = ["Datadog Read Only Role"]
+  send_user_invitation = false
 }
 
 # AWS part
