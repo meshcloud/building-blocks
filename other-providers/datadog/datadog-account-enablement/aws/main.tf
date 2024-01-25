@@ -1,9 +1,13 @@
-
-# Collect current users assinged to the project and their permissions
+// No changes for a user already having a role in Dadadog
+// meshStack project admin and user are both mapped to Datadog standard role
 locals {
-  stdusers  = { for user in var.users : user.username => user if contains(user["roles"], "admin") || contains(user["roles"], "user")  }
+  stdusers = { for user in var.users :
+    user.username => user if (contains(user["roles"], "admin") || contains(user["roles"], "user")
+    && !contains(data.datadog_users.existing_users.users.*.email, user.username))}
   #users = { for user in var.users : user.username => user if contains(user["roles"], "user") }
-  readers = { for user in var.users : user.username => user if contains(user["roles"], "reader") }
+  readers = { for user in var.users :
+    user.username => user if contains(user["roles"], "reader")
+    && !contains(data.datadog_users.existing_users.users.*.email, user.username)}
 }
 
 data "datadog_role" "stduser" {
@@ -12,6 +16,12 @@ data "datadog_role" "stduser" {
 
 data "datadog_role" "rouser" {
   filter = "Datadog Read Only Role"
+}
+
+# Collect current Datadog users
+data "datadog_users" "existing_users" {
+  filter        = "@meshcloud.io"
+  filter_status = "Active,Pending,Disabled"
 }
 
 # Create a new Datadog - Amazon Web Services integration
@@ -26,15 +36,6 @@ resource "datadog_integration_aws" "onboarding" {
   }
 }
 
-// Project admins and users are mapped to Datadog Standard roles
-resource "datadog_user" "stdusers" {
-  for_each = local.stdusers
-  email    = each.key
-  name     = join(" ", [each.value["firstName"],each.value["lastName"]])
-  roles = [data.datadog_role.stduser.id]
-  send_user_invitation = false
-}
-
 // Project admins are mapped to Datadog Standard roles
 resource "datadog_user" "readers" {
   for_each = local.readers
@@ -44,11 +45,19 @@ resource "datadog_user" "readers" {
   send_user_invitation = false
 }
 
+// Project admins and users are mapped to Datadog Standard roles
+resource "datadog_user" "stdusers" {
+  for_each = local.stdusers
+  email    = each.key
+  name     = join(" ", [each.value["firstName"],each.value["lastName"]])
+  roles = [data.datadog_role.stduser.id]
+  send_user_invitation = false
+}
+
 # AWS part
 # Create new IAM role, policy and trust relationship
 # to allow datadog aws account var.datadog_aws_account to
 # use that role and pull data
-
 data "aws_iam_policy_document" "datadog_aws_integration_assume_role" {
   statement {
     actions = ["sts:AssumeRole"]
@@ -148,7 +157,6 @@ data "aws_iam_policy_document" "datadog_aws_integration" {
       "xray:BatchGetTraces",
       "xray:GetTraceSummaries"
     ]
-
     resources = ["*"]
   }
 }
