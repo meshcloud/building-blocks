@@ -23,3 +23,9 @@ variable "users" {
   ))
   description = "Users and their roles provided by meshStack"
 }
+
+variable "approval" {
+  type        = string
+  default     = false
+  description = "This value is not used, it is only a placeholder for an input from meshStack UI."
+}
