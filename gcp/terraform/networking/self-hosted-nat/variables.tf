@@ -21,6 +21,25 @@ variable "network" {
   description = "Network where the NAT instance will be created"
 }
 
+variable "subnetwork" {
+  type        = string
+  default     = ""
+  description = "Subnet where the NAT instance will be created"
+}
+
+variable "subnetwork_project" {
+  type        = string
+  default     = ""
+  description = "Project ID of the GCP project holding this subnetwork"
+
+}
+
+variable "ip_address_type" {
+  type        = string
+  default     = "EXTERNAL"
+  description = "IP address type to attach to VM ('EXTERNAL' or 'INTERNAL')"
+}
+
 variable "zone" {
   type        = string
   description = "Zone where the NAT instance will be created"

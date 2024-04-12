@@ -10,11 +10,19 @@ resource "google_compute_instance" "nat" {
   }
 
   network_interface {
-    network = var.network
+    network            = var.network
+    subnetwork         = var.subnetwork == "" ? null : var.subnetwork
+    subnetwork_project = var.subnetwork_project == "" ? var.project : var.subnetwork_project
+    network_ip         = var.ip_address_type == "INTERNAL" ? google_compute_address.nat.address : null
 
-    access_config {
-      nat_ip = google_compute_address.nat.address
+    dynamic "access_config" {
+      for_each = var.ip_address_type == "INTERNAL" ? [] : [1]
+
+      content {
+        nat_ip = google_compute_address.nat.address
+      }
     }
+
   }
 
   can_ip_forward = true
@@ -30,7 +38,8 @@ EOF
 
 resource "google_compute_address" "nat" {
   name         = var.name
-  address_type = "EXTERNAL"
+  address_type = var.ip_address_type
+  subnetwork   = var.subnetwork == "" ? null : var.subnetwork
 }
 
 resource "google_compute_route" "nat" {
