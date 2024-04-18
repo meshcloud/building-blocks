@@ -33,10 +33,10 @@ locals {
 }
 
 output "instructions" {
-  value = "Copy kubeconfig value into a file, which can be directly used. e.g. `kubectl --kubeconfig kubeconfig.json get pods`"
+  value = "Copy kubeconfig value into a file, which can be directly used. e.g. `kubectl --kubeconfig kubeconfig get pods`"
 }
 
 output "kubeconfig" {
   sensitive = true
-  value     = local.kubeconfig
+  value     = yamlencode(local.kubeconfig)
 }
