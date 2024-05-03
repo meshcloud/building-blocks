@@ -16,7 +16,7 @@ data "github_repository" "this" {
 }
 
 resource "github_repository_file" "this" {
-  repository          = github_repository.this.name
+  repository          = data.github_repository.this.name
   branch              = "main"
   file                = "bb_test/.gitignore"
   content             = "**/*.tfstate"
