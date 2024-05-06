@@ -1,9 +1,3 @@
-variable "datadog_url" {
-  type        = string
-  default     = "https://api.datadoghq.eu/"
-  description = "Regional URL"
-}
-
 variable "datadog_child_organization_name" {
   type        = string
   description = "Name of the new Datadog Child Organization"
@@ -26,6 +20,5 @@ variable "users" {
 
 variable "approval" {
   type        = string
-  default     = false
-  description = "This value is not used, it is only a placeholder for an input from meshStack UI."
+  description = "Enter Approved to allow execution of the building block. Any other value would terminate the process."
 }

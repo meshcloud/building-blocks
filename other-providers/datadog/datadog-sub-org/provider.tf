@@ -2,12 +2,11 @@ terraform {
   required_providers {
     datadog = {
       source = "DataDog/datadog"
-      version = "3.35.0"
+      #version = "3.35.0"
     }
   }
 }
 
-# Configure the Datadog provider
+# APP and API keys are inherited from the environment
 provider "datadog" {
-  api_url = var.datadog_url
 }
