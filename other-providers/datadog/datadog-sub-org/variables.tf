@@ -21,11 +21,8 @@ variable "users" {
 variable "approval" {
   type        = string
   description = "Enter Approved to allow execution of the building block. Any other value would terminate the process."
-<<<<<<< HEAD
-=======
   validation {
     condition     = var.approval == "Approved"
     error_message = "The process was terminated because the request did not receive approval."
   }
->>>>>>> bd126ff (Validation of the approval is implemented in variables file)
 }

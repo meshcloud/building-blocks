@@ -13,42 +13,19 @@ data "datadog_role" "admuser" {
 
 # Create a new Datadog Child Organization
 resource "datadog_child_organization" "organization" {
-<<<<<<< HEAD
-  lifecycle {
-    precondition {
-      condition     = var.approval == "Approved"
-      error_message = "The process was terminated because the request did not receive approval."
-    }
-  }
-  
-=======
->>>>>>> bd126ff (Validation of the approval is implemented in variables file)
   name = var.datadog_child_organization_name
 }
 
 # Configure the Datadog provider for newly created Datadog child organization
 provider "datadog" {
-<<<<<<< HEAD
-  alias   = "newChildOrg"
-  api_key = datadog_child_organization.organization.api_key[0].key
-  app_key = datadog_child_organization.organization.application_key[0].hash
-=======
   alias    = "newChildOrg"
   api_key  = datadog_child_organization.organization.api_key[0].key
   app_key  = datadog_child_organization.organization.application_key[0].hash
->>>>>>> bd126ff (Validation of the approval is implemented in variables file)
   validate = false
 }
 
 # Assign Admin role for newly created Datadog child organization to users having admin role in the current project
 resource "datadog_user" "admusers" {
-  lifecycle {
-    precondition {
-      condition     = var.approval == "Approved"
-      error_message = "The process was terminated because the request did not receive approval."
-    }
-  }
-
   provider             = datadog.newChildOrg
   for_each             = local.admins
   email                = each.key
