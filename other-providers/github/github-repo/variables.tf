@@ -25,9 +25,9 @@ variable "visibility" {
 }
 
 variable "use_template" {
-  type = bool
+  type        = bool
   description = "Set it to 'True' if you want to create a repo based on a Template Repository"
-  default = false
+  default     = false
 }
 variable "template_owner" {
   type = string

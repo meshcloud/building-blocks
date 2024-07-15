@@ -18,5 +18,5 @@ resource "aws_route53_record" "record" {
     name                   = var.alias_name
     evaluate_target_health = var.alias_evaluate_target_health
     zone_id                = var.alias_zone_id
-  }  
+  }
 }

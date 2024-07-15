@@ -16,7 +16,7 @@ variable "sub" {
 
   # note: "CNAME records are illegal at apex, value must be a non-empty string."
   # terraform can't validate this right now
-  
+
 }
 
 # Legal DNS record types. Consider shortening this list if you want to constain allowed records

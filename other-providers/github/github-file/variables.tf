@@ -54,9 +54,9 @@ variable "overwrite_on_create" {
 
 ## meshstack BB status
 
-variable "meshstack_native" {
+variable "integrate_with_meshstack" {
   type        = bool
-  description = "true -> don't send status to meshstack bb, false -> send success status to specificied BB"
+  description = "true -> send success status to specificied BB, false -> don't send status to meshstack BB"
 }
 
 variable "buildingblock_uuid" {

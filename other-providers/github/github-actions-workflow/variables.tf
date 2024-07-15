@@ -4,9 +4,9 @@ variable "repository_name" {
 }
 
 variable "branch" {
-  type = string
+  type        = string
   description = "branch name"
-  default = "main"
+  default     = "main"
 }
 
 variable "commit_message" {
@@ -28,7 +28,7 @@ variable "commit_email" {
 }
 
 variable "filename" {
-  type = string
+  type        = string
   description = "Name of the yaml file you want to create in workflows folder"
-  default = "workflow.yml"
+  default     = "workflow.yml"
 }
