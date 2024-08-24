@@ -2,7 +2,7 @@ resource "random_pet" "suffix" {
   length = 1
 }
 
-resource "azuredevops_project" "terraform_ado_project" {
+resource "azuredevops_project" "devops_project" {
   name               = "${var.project_name}-${random_pet.suffix.id}"
   description        = var.description
   visibility         = var.visibility
@@ -19,7 +19,7 @@ resource "azuredevops_project" "terraform_ado_project" {
 }
 
 resource "azuredevops_serviceendpoint_github" "serviceendpoint_github" {
-  project_id            = azuredevops_project.terraform_ado_project.id
+  project_id            = azuredevops_project.devops_project.id
   service_endpoint_name = "Sample GithHub Personal Access Token"
 
   auth_personal {
@@ -65,31 +65,32 @@ locals {
 }
 # Assign Users to the specific Azure DevOps Groups
 resource "azuredevops_group_membership" "admin_user_group_assignmnet" {
-    depends_on = [azuredevops_group.admin_group]
+  depends_on = [azuredevops_group.admin_group]
 
   for_each = data.azuredevops_users.admin
-  group = azuredevops_group.admin_group.id
+  group    = azuredevops_group.admin_group.id
   members = [
     tolist(each.value.users)[0].descriptor
   ]
 }
 
 resource "azuredevops_group_membership" "user_user_group_assignmnet" {
-    depends_on = [data.azuredevops_group.user_group]
+  depends_on = [data.azuredevops_group.user_group]
 
   for_each = data.azuredevops_users.user
-  group = data.azuredevops_group.user_group.id
+  group    = data.azuredevops_group.user_group.id
   members = [
     tolist(each.value.users)[0].descriptor
   ]
 }
 
 resource "azuredevops_group_membership" "reader_user_group_assignmnet" {
-    depends_on = [data.azuredevops_group.reader_group]
+  depends_on = [data.azuredevops_group.reader_group]
 
   for_each = data.azuredevops_users.reader
-  group = data.azuredevops_group.reader_group.id
+  group    = data.azuredevops_group.reader_group.id
   members = [
     tolist(each.value.users)[0].descriptor
   ]
 }
+
