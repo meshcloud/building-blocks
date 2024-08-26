@@ -63,6 +63,35 @@ locals {
   admin_users  = { for user in var.users : user.euid => user if contains(user.roles, "admin") }
   user_users   = { for user in var.users : user.euid => user if contains(user.roles, "user") }
 }
+
+# Get now all users according to their permissions in ADO
+data "azuredevops_users" "reader" {
+  depends_on = [
+    null_resource.create_users 
+  ]
+  for_each = local.reader_users
+
+  principal_name = each.value.euid
+}
+
+data "azuredevops_users" "admin" {
+  depends_on = [
+    null_resource.create_users 
+  ]
+  for_each = local.admin_users
+
+  principal_name = each.value.euid
+}
+
+data "azuredevops_users" "user" {
+  depends_on = [
+    null_resource.create_users 
+  ]
+  for_each = local.user_users
+
+  principal_name = each.value.euid
+}
+
 # Assign Users to the specific Azure DevOps Groups
 resource "azuredevops_group_membership" "admin_user_group_assignmnet" {
   depends_on = [azuredevops_group.admin_group]
