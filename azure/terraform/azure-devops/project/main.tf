@@ -66,27 +66,18 @@ locals {
 
 # Get now all users according to their permissions in ADO
 data "azuredevops_users" "reader" {
-  depends_on = [
-    null_resource.create_users 
-  ]
   for_each = local.reader_users
 
   principal_name = each.value.euid
 }
 
 data "azuredevops_users" "admin" {
-  depends_on = [
-    null_resource.create_users 
-  ]
   for_each = local.admin_users
 
   principal_name = each.value.euid
 }
 
 data "azuredevops_users" "user" {
-  depends_on = [
-    null_resource.create_users 
-  ]
   for_each = local.user_users
 
   principal_name = each.value.euid
