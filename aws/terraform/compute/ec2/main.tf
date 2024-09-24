@@ -5,6 +5,7 @@ locals {
 resource "aws_instance" "example_server" {
   ami           = "ami-04e914639d0cca79a"
   instance_type = var.ec2_size
+  subnet_id     = var.ec2_subnet_id
   # root disk
   root_block_device {
     volume_size           = tostring(var.ec2_storage_size)
