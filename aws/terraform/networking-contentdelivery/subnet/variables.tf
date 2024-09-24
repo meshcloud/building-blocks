@@ -21,5 +21,6 @@ variable "aws_az" {
 
 variable "public_ip" {
     type = bool
+    default = false
     description = "Whether the subnet should provision public IP or not for the deployed instances"
 }
