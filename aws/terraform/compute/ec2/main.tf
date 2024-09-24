@@ -2,8 +2,18 @@
 #  sshpub_key = var.ec2_sshpub_key
 #}
 
+# Get latest Amazon Linux 2 AMI
+data "aws_ami" "amazon-linux-2" {
+  most_recent = true
+  owners      = ["amazon"]
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm*"]
+  }
+}
+
 resource "aws_instance" "ec2_server" {
-  ami           = "ami-04e914639d0cca79a"
+  ami           = data.aws_ami.amazon-linux-2.id
   instance_type = var.ec2_size
   subnet_id     = var.ec2_subnet_id
   # root disk
