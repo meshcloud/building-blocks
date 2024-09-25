@@ -23,4 +23,7 @@ resource "aws_instance" "ec2_server" {
     encrypted             = false
     delete_on_termination = true
   }
+  tags = {
+    Name = var.ec2_name
+  }
 }
