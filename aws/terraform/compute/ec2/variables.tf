@@ -1,7 +1,7 @@
 variable "ec2_size" {
   type        = string
   description = "Provide a name of AWS EC2 instance size such as t2.micro, etc."
-  default     = "t2.micro"
+  default     = "t2.nano"
 }
 
 #variable "ec2_sshpub_key" {
