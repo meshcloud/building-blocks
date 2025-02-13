@@ -3,7 +3,7 @@ data "azurerm_client_config" "current" {}
 
 resource "azurerm_resource_group" "key_vault" {
   name     = var.key_vault_resource_group_name
-  location = var.terraform_state_storage.location
+  location = var.location
 }
 
 resource "azurerm_key_vault" "key_vault" {
