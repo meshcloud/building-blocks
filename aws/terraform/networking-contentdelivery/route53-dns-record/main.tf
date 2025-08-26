@@ -8,5 +8,5 @@ resource "aws_route53_record" "record" {
   name    = "${var.sub}.${data.aws_route53_zone.zone.name}"
   type    = var.type
   ttl     = parseint(var.ttl, 10)
-  records = [var.record]
+  records = split(",", var.record)
 }
