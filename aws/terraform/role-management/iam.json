@@ -1,0 +1,49 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "IdentityStoreReadOnly",
+            "Effect": "Allow",
+            "Action": [
+                "identitystore:ListUsers",
+                "identitystore:DescribeUser",
+                "identitystore:GetUserId"
+            ],
+            "Resource": [
+                "arn:aws:identitystore::<AWS_ROOT_ACCOUNT>:identitystore/<IDENTITY_STORE>",
+                "arn:aws:identitystore:::user/*"
+            ]
+        },
+        {
+            "Sid": "SSODiscoveryAndMetadata",
+            "Effect": "Allow",
+            "Action": [
+                "sso:ListInstances",
+                "sso:DescribePermissionSet",
+                "sso:ListAccountAssignments",
+                "sso:DescribeAccountAssignmentCreationStatus",
+                "sso:DescribeAccountAssignmentDeletionStatus"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "RestrictedAccountAssignment",
+            "Effect": "Allow",
+            "Action": [
+                "sso:CreateAccountAssignment",
+                "sso:DeleteAccountAssignment"
+            ],
+            "Resource": [
+                "arn:aws:sso:::instance/ssoins-<SSO_INSTANCE_ID>",
+                "arn:aws:sso:::permissionSet/ssoins-<SSO_INSTANCE_ID>/<PERMISSION_SET1>",
+                "arn:aws:sso:::permissionSet/ssoins-<SSO_INSTANCE_ID>/<PERMISSION_SET2>",
+                "arn:aws:sso:::account/*"
+            ],
+            "Condition": {
+                "StringEquals": {
+                    "aws:RequestedRegion": "<AWS_REGION>"
+                }
+            }
+        }
+    ]
+}
