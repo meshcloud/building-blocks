@@ -1,8 +1,8 @@
 locals {
   # Define your role names and their corresponding ARNs here
   role_arns = {
-    "finops"   = "arn:aws:sso:::permissionSet/ssoins-69873586782ebb40/ps-1042dedfea9727c7"
-    "security" = "arn:aws:sso:::permissionSet/ssoins-69873586782ebb40/ps-69873258fbec01d2"
+    "finops"   = "" # provide permission set arn
+    "security" = "" # provide permission set arn
   }
 }
 
