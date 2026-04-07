@@ -13,8 +13,6 @@ terraform {
 }
 
 provider "azuredevops" {
-  # Remember to specify the org service url and personal access token details below
-  org_service_url = "XXXXXXXXXXXXXXXXXXX"
-  # personal_access_token = "XXXXXXXXXXXXXXXXXXX"
+  # Remember to specify the org service url and personal access token
 }
 

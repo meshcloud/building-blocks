@@ -28,3 +28,16 @@ variable "work_item_template" {
   description = "Specifies the work item template. Valid values: Agile, Basic, CMMI, Scrum or a custom, pre-existing one. Defaults to Agile."
   default     = "Agile"
 }
+
+# User Assignments
+variable "users" {
+  type = list(object({
+    meshIdentifier = string
+    username       = string
+    firstName      = string
+    lastName       = string
+    email          = string
+    euid           = string
+    roles          = list(string)
+  }))
+}
